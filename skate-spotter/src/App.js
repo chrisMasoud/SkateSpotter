@@ -1,16 +1,10 @@
 import React from "react";
-import SearchBar from "./components/SearchBar";
-import LoginButton from "./components/LoginButton";
-import LogoutButton from "./components/LogoutButton";
+import Header from "./components/Header";
 
 function App() {
   return (
     <div>
-      <header>
-        <SearchBar />
-        <LoginButton />
-        <LogoutButton />
-      </header>
+      <Header />
     </div>
   );
 }
