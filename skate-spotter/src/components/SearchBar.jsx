@@ -4,7 +4,9 @@ function SearchBar() {
   return (
     <form>
       <input placeholder="Enter Zip Code or Search by Name" type="text" />
-      <button>Submit</button>
+      <button>
+        <span>Submit</span>
+      </button>
     </form>
   );
 }
