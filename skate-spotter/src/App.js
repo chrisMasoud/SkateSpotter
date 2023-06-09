@@ -4,7 +4,7 @@ import SpotCard from "./components/SpotCard";
 
 function App() {
   return (
-    <div>
+    <div className="app">
       <Header />
       <SpotCard />
       <SpotCard />
