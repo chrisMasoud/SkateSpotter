@@ -4,11 +4,13 @@ import SpotCard from "./components/SpotCard";
 
 function App() {
   return (
-    <div className="app">
+    <>
       <Header />
-      <SpotCard />
-      <SpotCard />
-    </div>
+      <main>
+        <SpotCard />
+        <SpotCard />
+      </main>
+    </>
   );
 }
 

@@ -9,11 +9,12 @@
   border: 1px solid red;
 }
 
-.app {
+main {
   display: grid;
   background-color: darkgray;
-  width: 2000px;
+  width: 1827px;
   height: 2000px;
+  justify-content: center;
 }
 
 body {
@@ -26,7 +27,8 @@ body {
   background-color: white;
   display: flex;
   height: 200px;
-  width: 1840px;
+  width: 1825px;
+  justify-content: space-between;
 }
 
 button {
