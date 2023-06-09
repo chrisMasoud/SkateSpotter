@@ -6,7 +6,7 @@ import Logo from "./Logo";
 
 function Header() {
   return (
-    <header>
+    <header className="header">
       <Logo />
       <SearchBar />
       <LoginButton />
