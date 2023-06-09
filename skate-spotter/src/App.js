@@ -1,15 +1,12 @@
 import React from "react";
 import Header from "./components/Header";
-import SpotCard from "./components/SpotCard";
+import SpotCardList from "./components/SpotCardList";
 
 function App() {
   return (
     <>
       <Header />
-      <main>
-        <SpotCard />
-        <SpotCard />
-      </main>
+      <SpotCardList />
     </>
   );
 }

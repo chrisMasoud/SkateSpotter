@@ -11,7 +11,7 @@
 
 main {
   display: grid;
-  background-color: darkgray;
+  background-color: #d3d3d3;
   width: 1827px;
   height: 2000px;
   justify-content: center;
