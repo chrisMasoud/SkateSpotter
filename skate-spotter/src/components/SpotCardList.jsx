@@ -3,10 +3,10 @@ import Card from "./Card";
 
 function SpotCardList() {
   return (
-    <main>
+    <section className="spotCardSection">
       <Card />
       <Card />
-    </main>
+    </section>
   );
 }
 

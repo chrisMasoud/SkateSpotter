@@ -10,11 +10,9 @@
 }
 
 main {
-  display: grid;
   background-color: #d3d3d3;
   width: 1827px;
   height: 2000px;
-  justify-content: center;
 }
 
 body {
@@ -306,5 +304,10 @@ button:hover {
 
 .mapContainer {
   display: flex;
+  justify-content: center;
+}
+
+.spotCardSection {
+  display: grid;
   justify-content: center;
 }
