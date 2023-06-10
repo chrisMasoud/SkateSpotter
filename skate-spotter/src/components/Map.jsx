@@ -14,13 +14,12 @@ const center = {
 };
 
 function Map() {
+  const [map, setMap] = React.useState(null);
   const api_key = key.apikey;
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: api_key,
   });
-
-  const [map, setMap] = React.useState(null);
 
   const onLoad = React.useCallback(function callback(map) {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
