@@ -7,6 +7,7 @@ const containerStyle = {
     height: '600px'
 };
 
+//coords
 const center = {
     lat: 40.6868,
     lng: -73.3735
