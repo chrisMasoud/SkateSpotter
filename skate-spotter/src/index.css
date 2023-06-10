@@ -25,16 +25,18 @@ body {
   display: flex;
   height: 200px;
   width: 1825px;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
-button {
+.button {
   border: 2px solid #ef6452;
   background-color: #ef6452;
   border-radius: 0.9em;
   padding: 0.8em 1.2em 0.8em 1em;
   transition: all ease-in-out 0.2s;
   font-size: 16px;
+  width: 100px;
+  height: 50px;
 }
 
 button span {

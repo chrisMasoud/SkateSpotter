@@ -13,10 +13,6 @@ function Header() {
       <Logo />
       <SearchBar />
       <LoginButton />
-      <LogoutButton />
-      <LikeButton />
-      <DislikeButton />
-      <BookmarkButton />
     </header>
   );
 }
