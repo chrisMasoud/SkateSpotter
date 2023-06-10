@@ -64,12 +64,12 @@ button:hover {
 }
 
 .h1 {
-  font-size: 16px;
+  font-size: 24px;
   font-weight: bold;
 }
 
 .p {
-  font-size: 12px;
+  font-size: 16px;
   font-weight: lighter;
 }
 
@@ -88,8 +88,7 @@ button:hover {
 }
 
 .card {
-  width: 100%;
-  max-width: 1000px;
+  width: 1200px;
   height: 200px;
   background: white;
   border-radius: 20px;
