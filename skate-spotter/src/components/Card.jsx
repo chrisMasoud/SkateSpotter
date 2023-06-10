@@ -1,13 +1,13 @@
 import React from "react";
 
-function SpotCard() {
+function Card() {
   return (
     <div className="card">
       <div className="textBox">
-        <p className="h1">Spot Name</p>
-        <p className="p">Location</p>
-        <p className="p">Rating</p>
-        <p className="p">Weather</p>
+        <p className="h1">Card Name</p>
+        <p className="p">Subline 1</p>
+        <p className="p">Subline 2</p>
+        <p className="p">Subline 3</p>
       </div>
       <div className="img" />
       <div className="chevron">
@@ -30,4 +30,4 @@ function SpotCard() {
   );
 }
 
-export default SpotCard;
+export default Card;

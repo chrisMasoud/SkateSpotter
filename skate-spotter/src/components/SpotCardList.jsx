@@ -1,11 +1,11 @@
 import React from "react";
-import SpotCard from "./SpotCard";
+import Card from "./Card";
 
 function SpotCardList() {
   return (
     <main>
-      <SpotCard />
-      <SpotCard />
+      <Card />
+      <Card />
     </main>
   );
 }
