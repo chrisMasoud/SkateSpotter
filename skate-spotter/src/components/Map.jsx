@@ -1,21 +1,23 @@
 import React from "react";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import key from "../key.json";
 
 const containerStyle = {
-  width: "400px",
-  height: "400px",
+  width: "800px",
+  height: "600px",
 };
 
 //coords
 const center = {
-  lat: -3.745,
-  lng: -38.523,
+  lat: 40,
+  lng: -75,
 };
 
 function Map() {
+  const api_key = key.apikey;
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyBJ42xA6iuYW8k_RS-Sfl-KO3zq_IY9zQ0",
+    googleMapsApiKey: api_key,
   });
 
   const [map, setMap] = React.useState(null);
