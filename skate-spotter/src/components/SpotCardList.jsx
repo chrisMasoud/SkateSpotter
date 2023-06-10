@@ -6,6 +6,8 @@ function SpotCardList() {
     <section className="spotCardSection">
       <Card />
       <Card />
+      <Card />
+      <Card />
     </section>
   );
 }
