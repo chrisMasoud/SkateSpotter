@@ -5,6 +5,8 @@ import key from "../key.json";
 const containerStyle = {
   width: "800px",
   height: "600px",
+  borderRadius: "5%",
+  overflow: "hidden",
 };
 
 //coords
