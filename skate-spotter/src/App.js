@@ -7,8 +7,8 @@ function App() {
   return (
     <>
       <Header />
-      <SpotCardList />
       <Map />
+      <SpotCardList />
     </>
   );
 }

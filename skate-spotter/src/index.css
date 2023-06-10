@@ -303,3 +303,8 @@ button:hover {
     opacity: 0;
   }
 }
+
+.mapContainer {
+  display: flex;
+  justify-content: center;
+}
