@@ -528,3 +528,12 @@ button:hover {
   padding: 0 8px;
   width: 2.8em;
 }
+
+nav {
+  background-color: #d3d3d3;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-evenly;
+  z-index: 9999;
+}
