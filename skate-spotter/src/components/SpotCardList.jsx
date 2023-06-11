@@ -8,6 +8,14 @@ function SpotCardList() {
       <Card />
       <Card />
       <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
     </section>
   );
 }
