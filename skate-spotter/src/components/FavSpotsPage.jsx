@@ -1,11 +1,11 @@
 import React from "react";
-import Header from "./Header";
 import CardList from "./CardList";
+import FavPageHeader from "./FavPageHeader";
 
 export default function FavSpotsPage() {
   return (
     <>
-      <Header />
+      <FavPageHeader />
       <CardList />
     </>
   );

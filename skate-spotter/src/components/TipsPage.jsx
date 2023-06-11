@@ -1,11 +1,11 @@
 import React from "react";
-import Header from "./Header";
 import CardList from "./CardList";
+import TipsPageHeader from "./TipsPageHeader";
 
 export default function TipsPage() {
   return (
     <>
-      <Header />
+      <TipsPageHeader />
       <CardList />
     </>
   );

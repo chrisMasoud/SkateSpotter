@@ -73,6 +73,10 @@ button:hover {
   background-color: #7fc0a2;
 }
 
+h1 {
+  margin-top: 75px;
+}
+
 .h1 {
   font-size: 24px;
   font-weight: bold;
