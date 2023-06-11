@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "./Card";
 
-function SpotCardList() {
+function CardList() {
   return (
     <section className="spotCardSection">
       <Card />
@@ -20,4 +20,4 @@ function SpotCardList() {
   );
 }
 
-export default SpotCardList;
+export default CardList;

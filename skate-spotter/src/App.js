@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./components/Header";
-import SpotCardList from "./components/SpotCardList";
+import CardList from "./components/CardList";
 import Map from "./components/Map";
 import Navbar from "./components/Navbar";
 
@@ -10,7 +10,7 @@ function App() {
       <Header />
       <Navbar />
       <Map />
-      <SpotCardList />
+      <CardList />
     </>
   );
 }
