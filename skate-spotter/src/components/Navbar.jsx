@@ -4,11 +4,13 @@ import AddSpotButton from "./AddSpotButton";
 export default function Navbar() {
   return (
     <nav>
-      <AddSpotButton />
-      <AddSpotButton />
-      <AddSpotButton />
-      <AddSpotButton />
-      <AddSpotButton />
+      <div>
+        <AddSpotButton />
+        <AddSpotButton />
+        <AddSpotButton />
+        <AddSpotButton />
+        <AddSpotButton />
+      </div>
     </nav>
   );
 }

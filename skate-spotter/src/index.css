@@ -51,6 +51,16 @@ body {
   margin: 69px 162px;
 }
 
+.navButton {
+  border: 2px solid #ef6452;
+  background-color: #ef6452;
+  padding: 0.8em 1.2em 2em 1em;
+  transition: all ease-in-out 0.2s;
+  font-size: 16px;
+  width: 200px;
+  height: 20px;
+}
+
 button span {
   display: flex;
   justify-content: center;
@@ -741,7 +751,7 @@ button:hover {
 }
 
 nav {
-  background-color: #d3d3d3;
+  background-color: #ef6452;
   position: sticky;
   top: 0;
   display: flex;
