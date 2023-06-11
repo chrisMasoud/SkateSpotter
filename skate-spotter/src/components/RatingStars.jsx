@@ -2,7 +2,7 @@ import React from "react";
 
 function RatingStars() {
   return (
-    <div class="rating">
+    <div className="rating">
       <input value="star-1" name="star-radio" id="star-1" type="radio" />
       <label for="star-1">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
