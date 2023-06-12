@@ -10,12 +10,11 @@ export default function SpotDetailPage() {
   const title = queryParams.get("title");
 
   return (
-    <>
-      <h1 className="h1">Title: {title}</h1>
-      {/* <SpotImage />
+    <div className="details">
+      <SpotImage />
       <SpotInfo />
       <ReviewCard />
-      <ReviewCard /> */}
-    </>
+      <ReviewCard />
+    </div>
   );
 }

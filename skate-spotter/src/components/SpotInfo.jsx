@@ -7,7 +7,12 @@ export default function SpotInfo() {
       <p>Location: Lat & Long</p>
       <p>Rating: </p>
       <p>Current Conditions: </p>
-      <textarea>Spot Description</textarea>
+      <p>
+        Spot Description...Lorem ipsum dolor sit amet, consectetur adipiscing
+        elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+        ut aliquip ex ea commodo consequat.
+      </p>
     </div>
   );
 }

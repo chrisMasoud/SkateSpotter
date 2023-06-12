@@ -890,3 +890,13 @@ nav {
   box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
   border-color: #7fc0a2;
 }
+
+.details {
+  display: grid;
+  place-items: center;
+}
+
+p {
+  word-wrap: break-word;
+  max-width: 400px;
+}
