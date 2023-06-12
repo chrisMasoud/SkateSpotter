@@ -12,9 +12,9 @@ function Card({ title }) {
     <div className="card" onClick={handleClick}>
       <div className="textBox">
         <p className="h1">{title}</p>
-        <p className="p">Subline 1</p>
-        <p className="p">Subline 2</p>
-        <p className="p">Subline 3</p>
+        <p className="p">Location: Lat & Long</p>
+        <p className="p">Rating: 3/5</p>
+        <p className="p">Current Conditions: Sunny</p>
       </div>
       <div className="img" />
       <div className="chevron">
