@@ -5,6 +5,7 @@ import AddSpotPage from "./components/AddSpotPage";
 import FavSpotsPage from "./components/FavSpotsPage";
 import NewsPage from "./components/NewsPage";
 import TipsPage from "./components/TipsPage";
+import ProfilePage from "./components/ProfilePage";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <Route path="/FavSpotsPage" element={<FavSpotsPage />} />
       <Route path="/NewsPage" element={<NewsPage />} />
       <Route path="/TipsPage" element={<TipsPage />} />
+      <Route path="/ProfilePage" element={<ProfilePage />} />
     </Routes>
   );
 };

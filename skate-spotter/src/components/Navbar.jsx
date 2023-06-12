@@ -21,7 +21,7 @@ export default function Navbar() {
       <Link to="/TipsPage">
         <TipsButton />
       </Link>
-      <Link to="/TipsPage">
+      <Link to="/ProfilePage">
         <ProfileButton />
       </Link>
     </nav>
