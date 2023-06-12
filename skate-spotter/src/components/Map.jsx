@@ -35,7 +35,7 @@ function Map({ center }) {
   }, []);
 
   return isLoaded ? (
-    <artcile className="mapContainer">
+    <div className="mapContainer">
       <GoogleMap
         mapContainerStyle={containerStyle}
         defualtCenter={defualtCenter}
@@ -47,7 +47,7 @@ function Map({ center }) {
         {/* Child components, such as markers, info windows, etc. */}
         {/* <></> */}
       </GoogleMap>
-    </artcile>
+    </div>
   ) : (
     <></>
   );
