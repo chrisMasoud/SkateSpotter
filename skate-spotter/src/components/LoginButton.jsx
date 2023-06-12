@@ -1,8 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function LoginButton() {
+  const navigate = useNavigate();
+
+  function handleClick(event) {
+    navigate("/AddSpotPage");
+  }
+
   return (
-    <button className="buttonLogin">
+    <button className="buttonLogin" onClick={handleClick}>
       <span>
         <svg
           fill="none"
