@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from "react";
 
-function SearchBar() {
-  const [text, setText] = useState("");
+function SearchBar({ onZipCodeSearch }) {
+  const [zipCode, setZipCode] = useState("");
 
-  function handleSubmit() {
-    setText("");
+  function handleSearch() {
+    onZipCodeSearch(zipCode);
+    setZipCode("");
   }
 
   return (
@@ -34,8 +35,8 @@ function SearchBar() {
             title="Search"
             role="combobox"
             placeholder="Search by Zip Code"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
+            value={zipCode}
+            onChange={(e) => setZipCode(e.target.value)}
           />
         </div>
 
@@ -48,7 +49,7 @@ function SearchBar() {
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
-            onClick={handleSubmit}
+            onClick={handleSearch}
           >
             <path
               stroke-linecap="round"

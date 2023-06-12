@@ -9,13 +9,12 @@ const containerStyle = {
   overflow: "hidden",
 };
 
-//coords
-const center = {
+const defualtCenter = {
   lat: 40.7529,
   lng: -73.4267,
 };
 
-function Map() {
+function Map({ center }) {
   const [map, setMap] = React.useState(null);
   const api_key = key.apikey;
   const { isLoaded } = useJsApiLoader({
@@ -39,6 +38,7 @@ function Map() {
     <artcile className="mapContainer">
       <GoogleMap
         mapContainerStyle={containerStyle}
+        defualtCenter={defualtCenter}
         center={center}
         zoom={16}
         onLoad={onLoad}
