@@ -1,12 +1,12 @@
 import React from "react";
-import CardList from "./CardList";
 import AddPageHeader from "./AddPageHeader";
+import AddSpotForm from "./AddSpotForm";
 
 export default function FavSpotsPage() {
   return (
     <>
       <AddPageHeader />
-      <CardList />
+      <AddSpotForm />
     </>
   );
 }
