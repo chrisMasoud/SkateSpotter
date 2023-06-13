@@ -780,11 +780,12 @@ nav {
 }
 
 .signup-box {
-  max-width: 300px;
+  /* max-width: 300px; */
   background: #f1f7fe;
   overflow: hidden;
   border-radius: 16px;
   color: #010101;
+  width: 500px;
 }
 
 .signup-form {
@@ -827,6 +828,19 @@ nav {
   padding: 8px 15px;
 }
 
+.signup-textarea {
+  background: none;
+  border: 0;
+  outline: 0;
+  height: 100px;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+  padding: 8px 15px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
 .signup-sect {
   padding: 16px;
   font-size: 0.85rem;
@@ -846,7 +860,6 @@ nav {
 }
 
 .signup-form button {
-  background-color: #0066ff;
   color: #fff;
   border: 0;
   border-radius: 24px;
@@ -854,11 +867,13 @@ nav {
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  border: 2px solid #ef6452;
+  background-color: #ef6452;
+  transition: all ease-in-out 0.2s;
 }
 
 .signup-form button:hover {
-  background-color: #005ce6;
+  background-color: #7fc0a2;
 }
 
 .signup-alert {
@@ -913,4 +928,9 @@ nav {
 p {
   word-wrap: break-word;
   max-width: 400px;
+}
+
+.forms {
+  display: flex;
+  justify-content: center;
 }

@@ -6,7 +6,9 @@ export default function FavSpotsPage() {
   return (
     <>
       <AddPageHeader />
-      <AddSpotForm />
+      <div className="forms">
+        <AddSpotForm />
+      </div>
     </>
   );
 }
