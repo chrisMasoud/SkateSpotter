@@ -5,7 +5,7 @@ function LoginButton() {
   const navigate = useNavigate();
 
   function handleClick(event) {
-    navigate("/AddSpotPage");
+    navigate("/LoginPage");
   }
 
   return (

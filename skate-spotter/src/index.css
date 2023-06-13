@@ -854,6 +854,20 @@ nav {
   background-color: #005ce6;
 }
 
+.signup-alert {
+  display: flex;
+  justify-content: center;
+}
+
+.signup-error {
+  display: block;
+  background-color: red;
+  color: white;
+  width: fit-content;
+  height: 50px;
+  padding: 5px;
+}
+
 .profile {
   display: grid;
   align-items: center;

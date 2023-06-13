@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import AddSpotPage from "./components/AddSpotPage";
@@ -6,6 +6,7 @@ import FavSpotsPage from "./components/FavSpotsPage";
 import NewsPage from "./components/NewsPage";
 import TipsPage from "./components/TipsPage";
 import ProfilePage from "./components/ProfilePage";
+import Login from "./components/Login";
 import Signup from "./components/Signup";
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
       <Route path="/NewsPage" element={<NewsPage />} />
       <Route path="/TipsPage" element={<TipsPage />} />
       <Route path="/ProfilePage" element={<ProfilePage />} />
+      <Route path="/LoginPage" element={<Login />} />
       <Route path="/SignupPage" element={<Signup />} />
     </Routes>
   );
