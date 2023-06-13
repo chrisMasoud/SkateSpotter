@@ -108,7 +108,7 @@ function Signup() {
             <input
               value={zip}
               onChange={(e) => setZIP(e.target.value)}
-              type="text"
+              type="number"
               className="signup-input"
               placeholder="ZIP"
               name="zip"

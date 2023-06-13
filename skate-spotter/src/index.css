@@ -813,7 +813,7 @@ nav {
   overflow: hidden;
   border-radius: 8px;
   background-color: #fff;
-  margin: 1rem 0 0.5rem;
+  margin: 1rem 0rem 0.5rem;
   width: 100%;
 }
 
@@ -822,7 +822,7 @@ nav {
   border: 0;
   outline: 0;
   height: 40px;
-  width: 100%;
+  width: 95%;
   border-bottom: 1px solid #eee;
   font-size: 0.9rem;
   padding: 8px 15px;
