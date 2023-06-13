@@ -1,13 +1,20 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-function Card() {
+function Card({ title }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/page?title=${encodeURIComponent(title)}`);
+  };
+
   return (
-    <div className="card">
+    <div className="card" onClick={handleClick}>
       <div className="textBox">
-        <p className="h1">Card Name</p>
-        <p className="p">Subline 1</p>
-        <p className="p">Subline 2</p>
-        <p className="p">Subline 3</p>
+        <p className="h1">{title}</p>
+        <p className="p">Location: Lat & Long</p>
+        <p className="p">Rating: 3/5</p>
+        <p className="p">Current Conditions: Sunny</p>
       </div>
       <div className="img" />
       <div className="chevron">

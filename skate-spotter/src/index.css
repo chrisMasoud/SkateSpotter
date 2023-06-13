@@ -112,6 +112,13 @@ h1 {
   background: linear-gradient(#ef6452, #7fc0a2);
 }
 
+.spotImage {
+  width: 800px;
+  height: 500px;
+  border-radius: 10px;
+  background: linear-gradient(#ef6452, #7fc0a2);
+}
+
 .card {
   width: 1200px;
   height: 200px;
@@ -896,4 +903,14 @@ nav {
 .profileBio:hover {
   box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
   border-color: #7fc0a2;
+}
+
+.details {
+  display: grid;
+  place-items: center;
+}
+
+p {
+  word-wrap: break-word;
+  max-width: 400px;
 }

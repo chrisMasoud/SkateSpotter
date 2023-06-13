@@ -8,6 +8,7 @@ import TipsPage from "./components/TipsPage";
 import ProfilePage from "./components/ProfilePage";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import SpotDetailPage from "./components/SpotDetailPage";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
       <Route path="/ProfilePage" element={<ProfilePage />} />
       <Route path="/LoginPage" element={<Login />} />
       <Route path="/SignupPage" element={<Signup />} />
+      <Route path="/page" element={<SpotDetailPage />} />
     </Routes>
   );
 };
