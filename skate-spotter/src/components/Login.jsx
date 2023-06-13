@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 
 function Login() {
@@ -39,6 +40,16 @@ function Login() {
     );
   };
 
+  const handleGoogleSuccess = (response) => {
+    console.log(response);
+    // Perform any additional actions with the response data
+  };
+
+  const handleGoogleFailure = (error) => {
+    console.log(error);
+    // Handle the error as needed
+  };
+
   return (
     <div className="signup-box">
       <div className="signup-alert">{errorMessage()}</div>
@@ -71,6 +82,14 @@ function Login() {
         <button type="submit" className="signup-button">
           Login
         </button>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <GoogleLogin
+            clientId="766515958928-fnqq80r9t4abrues25eht0c8iled30lf.apps.googleusercontent.com"
+            onSuccess={handleGoogleSuccess}
+            onFailure={handleGoogleFailure}
+            cookiePolicy={"single_host_origin"}
+          />
+        </div>
       </form>
       <div className="signup-sect">
         <p>

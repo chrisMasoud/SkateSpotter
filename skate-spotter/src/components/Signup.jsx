@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
-import SignupGoogle from "./SignupGoogle";
 
 function Signup() {
   const [firstName, setFirstName] = useState("");
@@ -54,14 +53,6 @@ function Signup() {
         <h1>All fields are required.</h1>
       </div>
     );
-  };
-
-  const g_responseMessage = (response) => {
-    console.log(response);
-  };
-
-  const g_errorMessage = (error) => {
-    console.log(error);
   };
 
   const handleGoogleSuccess = (response) => {
