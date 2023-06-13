@@ -8,13 +8,15 @@ export default function ProfilePicUploadButton({ onImageSelect }) {
 
   return (
     <div>
-      <label htmlFor="profilePic">Upload Profile Image: </label>
-      <input
-        id="profilePic"
-        type="file"
-        accept="image/*"
-        onChange={handleImageSelect}
-      />
+      <label htmlFor="profilePic">
+        Change Profile Image:{" "}
+        <input
+          id="profilePic"
+          type="file"
+          accept="image/*"
+          onChange={handleImageSelect}
+        />
+      </label>
     </div>
   );
 }

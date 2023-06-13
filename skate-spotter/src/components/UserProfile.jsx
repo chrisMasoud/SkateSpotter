@@ -21,13 +21,14 @@ export default function UserProfile() {
     <section className="profile">
       <div className="profileForm">
         <UserAvatar imageUrl={imageUrl} size={avatarSize} />
-        <ProfilePicUploadButton onImageSelect={handleImageSelect} />
+
         <h1 style={{ marginTop: "20px" }}>User Name</h1>
         <h4 style={{ marginTop: "-10px" }}>Zip Code</h4>
         <textarea
           className="profileBio"
           placeholder="Enter your biography..."
         />
+        <ProfilePicUploadButton onImageSelect={handleImageSelect} />
       </div>
       <div className="profileCards">
         <label className="h1" htmlFor="spotsAdded">
