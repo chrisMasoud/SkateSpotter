@@ -51,52 +51,6 @@ function Login() {
   };
 
   return (
-    <div className="signup-box">
-      <div className="signup-alert">{errorMessage()}</div>
-      <form
-        className="signup-form"
-        method="post"
-        action=""
-        onSubmit={(e) => handleSubmit(e)}
-      >
-        <span className="signup-hdr">Log in</span>
-        <span className="signup-sub">Login using your email and password.</span>
-        <div className="signup-container">
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            className="signup-input"
-            placeholder="Email"
-            name="email"
-          />
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            className="signup-input"
-            placeholder="Password"
-            name="password"
-          />
-        </div>
-        <button type="submit" className="signup-button">
-          Login
-        </button>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <GoogleLogin
-            clientId="766515958928-fnqq80r9t4abrues25eht0c8iled30lf.apps.googleusercontent.com"
-            onSuccess={handleGoogleSuccess}
-            onFailure={handleGoogleFailure}
-            cookiePolicy={"single_host_origin"}
-          />
-        </div>
-      </form>
-      <div className="signup-sect">
-        <p>
-          Don't have an account? <Link to="/SignupPage">Register here!</Link>
-        </p>
-      </div>
-    </div>
     <div className="forms">
       <div className="signup-box">
         <div className="signup-alert">{errorMessage()}</div>
