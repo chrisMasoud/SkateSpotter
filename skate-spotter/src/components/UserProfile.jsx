@@ -3,6 +3,7 @@ import UserAvatar from "./UserAvatar";
 import CardList from "./CardList";
 import ProfilePicUploadButton from "./ProfilePicUploadButton";
 import { useState } from "react";
+import UploadFilePrompt from "./UploadFilePrompt";
 
 export default function UserProfile() {
   const defaultImageUrl = "https://randomuser.me/api/portraits/men/1.jpg";
@@ -28,7 +29,7 @@ export default function UserProfile() {
           className="profileBio"
           placeholder="Enter your biography..."
         />
-        <ProfilePicUploadButton onImageSelect={handleImageSelect} />
+        <UploadFilePrompt onImageSelect={handleImageSelect} />
       </div>
       <div className="profileCards">
         <label className="h1" htmlFor="spotsAdded">
