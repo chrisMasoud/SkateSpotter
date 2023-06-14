@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 
 function Login() {
@@ -37,6 +38,16 @@ function Login() {
         <h1>All fields are required.</h1>
       </div>
     );
+  };
+
+  const handleGoogleSuccess = (response) => {
+    console.log(response);
+    // Perform any additional actions with the response data
+  };
+
+  const handleGoogleFailure = (error) => {
+    console.log(error);
+    // Handle the error as needed
   };
 
   return (
