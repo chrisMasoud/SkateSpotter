@@ -97,6 +97,48 @@ function Login() {
         </p>
       </div>
     </div>
+    <div className="forms">
+      <div className="signup-box">
+        <div className="signup-alert">{errorMessage()}</div>
+        <form
+          className="signup-form"
+          method="post"
+          action=""
+          onSubmit={(e) => handleSubmit(e)}
+        >
+          <span className="signup-hdr">Log in</span>
+          <span className="signup-sub">
+            Login using your email and password.
+          </span>
+          <div className="signup-container">
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              className="signup-input"
+              placeholder="Email"
+              name="email"
+            />
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              className="signup-input"
+              placeholder="Password"
+              name="password"
+            />
+          </div>
+          <button type="submit" className="signup-button">
+            Login
+          </button>
+        </form>
+        <div className="signup-sect">
+          <p>
+            Don't have an account? <Link to="/SignupPage">Register here!</Link>
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
 

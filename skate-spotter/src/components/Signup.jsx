@@ -66,82 +66,86 @@ function Signup() {
   };
 
   return (
-    <div className="signup-box">
-      <div className="signup-alert">{errorMessage()}</div>
-      <form
-        className="signup-form"
-        method="post"
-        action=""
-        onSubmit={(e) => handleSubmit(e)}
-      >
-        <span className="signup-hdr">Sign up</span>
-        <span className="signup-sub">Create an account using your email.</span>
-        <div className="signup-container">
-          <input
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            type="text"
-            className="signup-input"
-            placeholder="First Name"
-            name="firstname"
-          />
-          <input
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            type="text"
-            className="signup-input"
-            placeholder="Last Name"
-            name="lastname"
-          />
-          <input
-            value={zip}
-            onChange={(e) => setZIP(e.target.value)}
-            type="text"
-            className="signup-input"
-            placeholder="ZIP"
-            name="zip"
-          />
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            className="signup-input"
-            placeholder="Email"
-            name="email"
-          />
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            className="signup-input"
-            placeholder="Password"
-            name="password"
-          />
-          <input
-            value={confirm}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            type="password"
-            className="signup-input"
-            placeholder="Confirm password"
-            name="confirm"
-          />
+    <div className="forms">
+      <div className="signup-box">
+        <div className="signup-alert">{errorMessage()}</div>
+        <form
+          className="signup-form"
+          method="post"
+          action=""
+          onSubmit={(e) => handleSubmit(e)}
+        >
+          <span className="signup-hdr">Sign up</span>
+          <span className="signup-sub">
+            Create an account using your email.
+          </span>
+          <div className="signup-container">
+            <input
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              type="text"
+              className="signup-input"
+              placeholder="First Name"
+              name="firstname"
+            />
+            <input
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              type="text"
+              className="signup-input"
+              placeholder="Last Name"
+              name="lastname"
+            />
+            <input
+              value={zip}
+              onChange={(e) => setZIP(e.target.value)}
+              type="number"
+              className="signup-input"
+              placeholder="ZIP"
+              name="zip"
+            />
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              className="signup-input"
+              placeholder="Email"
+              name="email"
+            />
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              className="signup-input"
+              placeholder="Password"
+              name="password"
+            />
+            <input
+              value={confirm}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              type="password"
+              className="signup-input"
+              placeholder="Confirm password"
+              name="confirm"
+            />
+          </div>
+          <button type="submit" className="signup-button">
+            Register
+          </button>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <GoogleLogin
+              clientId="766515958928-fnqq80r9t4abrues25eht0c8iled30lf.apps.googleusercontent.com"
+              onSuccess={handleGoogleSuccess}
+              onFailure={handleGoogleFailure}
+              cookiePolicy={"single_host_origin"}
+            />
+          </div>
+        </form>
+        <div className="signup-sect">
+          <p>
+            Already have an account? <Link to="/LoginPage">Login here!</Link>
+          </p>
         </div>
-        <button type="submit" className="signup-button">
-          Register
-        </button>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <GoogleLogin
-            clientId="766515958928-fnqq80r9t4abrues25eht0c8iled30lf.apps.googleusercontent.com"
-            onSuccess={handleGoogleSuccess}
-            onFailure={handleGoogleFailure}
-            cookiePolicy={"single_host_origin"}
-          />
-        </div>
-      </form>
-      <div className="signup-sect">
-        <p>
-          Already have an account? <Link to="/LoginPage">Login here!</Link>
-        </p>
       </div>
     </div>
   );
