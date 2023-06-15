@@ -18,15 +18,16 @@ connection.connect((err) => {
   console.log("Connected to the database!");
 });
 
-app.get("/api/pics", (req, res) => {
-  const query = "UPDATE Tutorials SET thumbnail = ? WHERE tutorialID = ?";
-  connection.query(query, [thumbnailData, 6], (err, results) => {
-    if (err) {
-      console.error("Error inserting blob:", err);
-      res.status(500).send("Error inserting blob");
-      return;
+app.get("/api/news", (req, res) => {
+  const query = "SELECT * FROM News";
+
+  connection.query(query, (error, results) => {
+    if (error) {
+      console.error("Error fetching news data:", error);
+      res.status(500).json({ error: "An error occurred" });
+    } else {
+      res.json(results);
     }
-    res.send("Blob inserted successfully!");
   });
 });
 
@@ -35,7 +36,7 @@ app.get("/api/tips", (req, res) => {
 
   connection.query(query, (error, results) => {
     if (error) {
-      console.error("Error fetching news data:", error);
+      console.error("Error fetching tips data:", error);
       res.status(500).json({ error: "An error occurred" });
     } else {
       res.json(results);
