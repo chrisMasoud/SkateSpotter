@@ -4,21 +4,30 @@ import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 
 function Signup() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [zip, setZIP] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirm, setConfirmPassword] = useState("");
+  const [formData, setFormData] = useState({
+    firstname: "",
+    lastname: "",
+    zip: "",
+    email: "",
+    password: "",
+    confirm: "",
+  });
 
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const { firstname, lastname, zip, email, password, confirm } = formData;
+
     if (
-      firstName === "" ||
-      lastName === "" ||
+      firstname === "" ||
+      lastname === "" ||
       zip === "" ||
       email === "" ||
       password === "" ||
@@ -26,24 +35,14 @@ function Signup() {
     ) {
       setError(true);
     } else {
+      try {
+        const response = await axios.post("/api/signup", formData);
+        alert(response.data);
+      } catch (error) {
+        alert(error.message);
+      }
       setSubmitted(true);
       setError(false);
-      const url = "http://localhost/skatespotter/signup.php";
-      const signupData = new FormData();
-      signupData.append("firstname", firstName);
-      signupData.append("lastname", lastName);
-      signupData.append("zip", zip);
-      signupData.append("email", email);
-      signupData.append("password", password);
-      signupData.append("confirm", confirm);
-      axios
-        .post(url, signupData)
-        .then((response) => {
-          alert(response.data);
-        })
-        .catch((error) => {
-          alert(error.message);
-        });
     }
   };
 
@@ -81,48 +80,48 @@ function Signup() {
           </span>
           <div className="signup-container">
             <input
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              value={formData.firstName}
+              onChange={handleChange}
               type="text"
               className="signup-input"
               placeholder="First Name"
               name="firstname"
             />
             <input
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              value={formData.lastName}
+              onChange={handleChange}
               type="text"
               className="signup-input"
               placeholder="Last Name"
               name="lastname"
             />
             <input
-              value={zip}
-              onChange={(e) => setZIP(e.target.value)}
+              value={formData.zip}
+              onChange={handleChange}
               type="number"
               className="signup-input"
               placeholder="ZIP"
               name="zip"
             />
             <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formData.email}
+              onChange={handleChange}
               type="email"
               className="signup-input"
               placeholder="Email"
               name="email"
             />
             <input
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formData.password}
+              onChange={handleChange}
               type="password"
               className="signup-input"
               placeholder="Password"
               name="password"
             />
             <input
-              value={confirm}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              value={formData.confirm}
+              onChange={handleChange}
               type="password"
               className="signup-input"
               placeholder="Confirm password"

@@ -17,17 +17,18 @@ function Login() {
     } else {
       setSubmitted(true);
       setError(false);
-      const url = "http://localhost/skatespotter/login.php";
-      const loginData = new FormData();
-      loginData.append("email", email);
-      loginData.append("password", password);
+      const url = "/api/login";
+      const loginData = {
+        email: email,
+        password: password,
+      };
       axios
         .post(url, loginData)
         .then((response) => {
-          alert(response.data);
+          alert(response.data.message);
         })
         .catch((error) => {
-          alert(error.message);
+          alert(error.response.data.error);
         });
     }
   };
@@ -57,7 +58,6 @@ function Login() {
         <form
           className="signup-form"
           method="post"
-          action=""
           onSubmit={(e) => handleSubmit(e)}
         >
           <span className="signup-hdr">Log in</span>
