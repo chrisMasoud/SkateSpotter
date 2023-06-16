@@ -34,11 +34,11 @@ export default function UserProfile() {
         <label className="h1" htmlFor="spotsAdded">
           Spots Added:{" "}
         </label>
-        <Card id="spotsAdded" />
+        {/* <Card id="spotsAdded" /> */}
         <label className="h1" htmlFor="favSpots">
           Favorite Spots:{" "}
         </label>
-        <Card id="favSpots" />
+        {/* <Card id="favSpots" /> */}
       </div>
     </section>
   );
