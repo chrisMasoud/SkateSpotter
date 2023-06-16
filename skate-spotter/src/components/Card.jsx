@@ -1,11 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
-function Card({ data }) {
-  const navigate = useNavigate();
-
+function Card({ data, onClick }) {
   const handleClick = () => {
-    navigate(`/page?title=${encodeURIComponent(data.SpotName)}`);
+    onClick(data);
   };
 
   return (
@@ -18,7 +15,7 @@ function Card({ data }) {
         <p className="p">Rating: 3/5</p>
         <p className="p">Current Conditions: Sunny</p>
       </div>
-      <img src={data.Spotimage} className="img" />
+      <img className="img" src={data.Spotimage} />
       <div className="chevron">
         <svg
           fill="none"

@@ -6,10 +6,12 @@ import Navbar from "./Navbar";
 import { useState, useEffect } from "react";
 import key from "../key.json";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
   const [mapCenter, setMapCenter] = useState({ lat: 40.7529, lng: -73.4267 });
   const [spotData, setSpotData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -37,6 +39,10 @@ export default function HomePage() {
       });
   };
 
+  const handleClick = (spotItem) => {
+    navigate(`/page`, { state: { data: spotItem } });
+  };
+
   return (
     <>
       <Header onZipCodeSearch={handleZipCodeSearch} />
@@ -44,7 +50,7 @@ export default function HomePage() {
       <Map center={mapCenter} />
       <section className="spotCardSection">
         {spotData.map((spotItem) => (
-          <Card key={spotItem.SpotID} data={spotItem} />
+          <Card key={spotItem.SpotID} data={spotItem} onClick={handleClick} />
         ))}
       </section>
     </>
