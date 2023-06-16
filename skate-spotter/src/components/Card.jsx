@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function Card({ data, onClick }) {
+  const [weather, setWeather] = useState(null);
+
+  useEffect(() => {
+    const fetchWeatherData = async () => {
+      try {
+        const response = await axios.get(
+          `https://api.openweathermap.org/data/2.5/weather?lat=${data.Latitude}&lon=${data.Longitude}&appid=f8fd99d1a4e3574e6ea14bec0b990b12`
+        );
+        setWeather(response.data);
+      } catch (error) {
+        console.error("Error fetching weather data:", error);
+      }
+    };
+
+    fetchWeatherData();
+  }, [data]);
+
   const handleClick = () => {
-    onClick(data);
+    onClick(data, weather);
   };
 
   return (
@@ -13,7 +31,15 @@ function Card({ data, onClick }) {
           Location: {data.Latitude}, {data.Longitude}
         </p>
         <p className="p1">Rating: {data.Rating}/5</p>
-        <p className="p1">Current Conditions: Sunny</p>
+        {weather && weather.main && weather.weather ? (
+          <>
+            <p className="p1">
+              Current Conditions: {weather.weather[0].description}
+            </p>
+          </>
+        ) : (
+          <p className="p1">Weather data not available</p>
+        )}
       </div>
       <img className="img" src={data.Spotimage} />
       <div className="chevron">

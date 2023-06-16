@@ -39,8 +39,8 @@ export default function HomePage() {
       });
   };
 
-  const handleClick = (spotItem) => {
-    navigate(`/page`, { state: { data: spotItem } });
+  const handleClick = (spotItem, weather) => {
+    navigate(`/page`, { state: { data: spotItem, weather } });
   };
 
   return (

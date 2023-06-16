@@ -3,8 +3,8 @@ import ReviewCard from "./ReviewCard";
 import { useLocation } from "react-router-dom";
 
 export default function SpotDetailPage() {
-  const { state } = useLocation();
-  const data = state?.data || {};
+  const location = useLocation();
+  const { data, weather } = location?.state || {};
 
   return (
     <div className="details">
@@ -15,7 +15,15 @@ export default function SpotDetailPage() {
           Location: {data.Latitude}, {data.Longitude}
         </p>
         <p>Rating: {data.Rating}/5</p>
-        <p>Current Conditions: Sunny</p>
+        {weather && weather.main && weather.weather ? (
+          <>
+            <p className="p1">
+              Current Conditions: {weather.weather[0].description}
+            </p>
+          </>
+        ) : (
+          <p className="p1">Weather data not available</p>
+        )}
         <p>{data.Descriptions}</p>
       </div>
       {/* <ReviewCard />
