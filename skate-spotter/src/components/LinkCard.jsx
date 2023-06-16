@@ -1,19 +1,18 @@
 import React from "react";
 
-function LinkCard({ title, url }) {
+function LinkCard({ data }) {
   const handleClick = () => {
-    window.open(url, "_blank");
+    window.open(data.url, "_blank");
   };
 
   return (
     <div className="card" onClick={handleClick}>
       <div className="textBox">
-        <p className="h1">{title}</p>
-        <p className="p">Location: Lat & Long</p>
-        <p className="p">Rating: 3/5</p>
-        <p className="p">Current Conditions: Sunny</p>
+        <p className="h1">{data.title}</p>
+        <p className="p">{data.creator}</p>
+        <p className="p">{data.description}...</p>
       </div>
-      <div className="img" />
+      <img src={data.thumbnail} className="img" />
       <div className="chevron">
         <svg
           fill="none"

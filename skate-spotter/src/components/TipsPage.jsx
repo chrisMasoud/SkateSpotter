@@ -1,19 +1,30 @@
 import React from "react";
 import LinkCard from "./LinkCard";
 import TipsPageHeader from "./TipsPageHeader";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function TipsPage() {
-  const cardTitle = "Card Name";
-  const cardUrl = "https://www.youtube.com/watch?v=4XgjDhSnTtE";
+  const [tipsData, setTipsData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("/api/tips")
+      .then((response) => {
+        setTipsData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching news data:", error);
+      });
+  }, []);
 
   return (
     <>
       <TipsPageHeader />
       <section className="spotCardSection">
-        <LinkCard title={cardTitle} url={cardUrl} />
-        <LinkCard title={cardTitle} url={cardUrl} />
-        <LinkCard title={cardTitle} url={cardUrl} />
-        <LinkCard title={cardTitle} url={cardUrl} />
+        {tipsData.map((tipsItem) => (
+          <LinkCard key={tipsItem.tutorialID} data={tipsItem} />
+        ))}
       </section>
     </>
   );
