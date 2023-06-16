@@ -22,6 +22,19 @@ connection.connect((err) => {
   console.log("Connected to the database!");
 });
 
+app.get("/api/spots", (req, res) => {
+  const query = "SELECT * FROM SkateSpot";
+
+  connection.query(query, (error, results) => {
+    if (error) {
+      console.error("Error fetching news data:", error);
+      res.status(500).json({ error: "An error occurred" });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
 app.get("/api/news", (req, res) => {
   const query = "SELECT * FROM News";
 

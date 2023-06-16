@@ -1,7 +1,6 @@
 import React from "react";
 import UserAvatar from "./UserAvatar";
-import CardList from "./CardList";
-import ProfilePicUploadButton from "./ProfilePicUploadButton";
+import Card from "./Card";
 import { useState } from "react";
 import UploadFilePrompt from "./UploadFilePrompt";
 
@@ -35,11 +34,11 @@ export default function UserProfile() {
         <label className="h1" htmlFor="spotsAdded">
           Spots Added:{" "}
         </label>
-        <CardList id="spotsAdded" />
+        <Card id="spotsAdded" />
         <label className="h1" htmlFor="favSpots">
           Favorite Spots:{" "}
         </label>
-        <CardList id="favSpots" />
+        <Card id="favSpots" />
       </div>
     </section>
   );

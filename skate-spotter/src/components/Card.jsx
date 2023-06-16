@@ -1,22 +1,24 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function Card({ title }) {
+function Card({ data }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/page?title=${encodeURIComponent(title)}`);
+    navigate(`/page?title=${encodeURIComponent(data.SpotName)}`);
   };
 
   return (
     <div className="card" onClick={handleClick}>
       <div className="textBox">
-        <p className="h1">{title}</p>
-        <p className="p">Location: Lat & Long</p>
+        <p className="h1">{data.SpotName}</p>
+        <p className="p">
+          Location: {data.Latitude}, {data.Longitude}
+        </p>
         <p className="p">Rating: 3/5</p>
         <p className="p">Current Conditions: Sunny</p>
       </div>
-      <div className="img" />
+      <img src={data.Spotimage} className="img" />
       <div className="chevron">
         <svg
           fill="none"

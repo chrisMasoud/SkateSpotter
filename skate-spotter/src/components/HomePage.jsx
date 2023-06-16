@@ -1,13 +1,26 @@
 import React from "react";
 import Header from "./Header";
-import CardList from "./CardList";
+import Card from "./Card";
 import Map from "./Map";
 import Navbar from "./Navbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import key from "../key.json";
+import axios from "axios";
 
 export default function HomePage() {
   const [mapCenter, setMapCenter] = useState({ lat: 40.7529, lng: -73.4267 });
+  const [spotData, setSpotData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("/api/spots")
+      .then((response) => {
+        setSpotData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching news data:", error);
+      });
+  }, []);
 
   const handleZipCodeSearch = (zipCode) => {
     const api_key = key.apikey;
@@ -29,7 +42,11 @@ export default function HomePage() {
       <Header onZipCodeSearch={handleZipCodeSearch} />
       <Navbar />
       <Map center={mapCenter} />
-      <CardList />
+      <section className="spotCardSection">
+        {spotData.map((spotItem) => (
+          <Card key={spotItem.SpotID} data={spotItem} />
+        ))}
+      </section>
     </>
   );
 }
