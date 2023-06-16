@@ -11,16 +11,6 @@ import Signup from "./components/Signup";
 import SpotDetailPage from "./components/SpotDetailPage";
 
 const App = () => {
-  const [backendData, setBackendData] = useState([{}]);
-
-  useEffect(() => {
-    fetch("/api")
-      .then((response) => response.json())
-      .then((data) => {
-        setBackendData(data);
-      });
-  }, []);
-
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
