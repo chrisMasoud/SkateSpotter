@@ -9,11 +9,11 @@ function Card({ data, onClick }) {
     <div className="card" onClick={handleClick}>
       <div className="textBox">
         <p className="h1">{data.SpotName}</p>
-        <p className="p">
+        <p className="p1">
           Location: {data.Latitude}, {data.Longitude}
         </p>
-        <p className="p">Rating: 3/5</p>
-        <p className="p">Current Conditions: Sunny</p>
+        <p className="p1">Rating: {data.Rating}/5</p>
+        <p className="p1">Current Conditions: Sunny</p>
       </div>
       <img className="img" src={data.Spotimage} />
       <div className="chevron">

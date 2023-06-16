@@ -14,7 +14,7 @@ export default function SpotDetailPage() {
         <p>
           Location: {data.Latitude}, {data.Longitude}
         </p>
-        <p>Rating: 3/5</p>
+        <p>Rating: {data.Rating}/5</p>
         <p>Current Conditions: Sunny</p>
         <p>{data.Descriptions}</p>
       </div>
