@@ -47,7 +47,7 @@ export default function HomePage() {
     <>
       <Header onZipCodeSearch={handleZipCodeSearch} />
       <Navbar />
-      <Map center={mapCenter} />
+      <Map center={mapCenter} spots={spotData} />
       <section className="spotCardSection">
         {spotData.map((spotItem) => (
           <Card key={spotItem.SpotID} data={spotItem} onClick={handleClick} />
