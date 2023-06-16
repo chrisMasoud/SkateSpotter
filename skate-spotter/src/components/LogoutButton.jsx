@@ -1,8 +1,23 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 function LogoutButton() {
+  const history = useHistory();
+  const handleLogout = () => {
+    axios
+      .post("/api/logout")
+      .then((response) => {
+        localStorage.removeItem("loggedin");
+        localStorage.removeItem("uid");
+        history.push("/LoginPage");
+      })
+      .catch((error) => {
+        console.error("Logout error:", error);
+      });
+    }
   return (
-    <button>
+    <button onClick={handleLogout}>
       <span>
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -1,10 +1,18 @@
 const express = require("express");
+const session = require("express-session");
 const mysql = require("mysql");
 const fs = require("fs");
 const bodyParser = require("body-parser");
 const md5 = require("md5");
 const app = express();
 app.use(express.json());
+app.use(
+  session({
+    secret: "replace-with-something-else",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 // Database Connection
 const connection = mysql.createConnection({
@@ -62,12 +70,24 @@ app.post("/api/login", (req, res) => {
       return;
     }
     if (results.length > 0) {
-      res.json({ message: "Login successful!" });
+      req.session.user = email;
+      res.json({ message: "Login successful!", user: results[0]});
     } else {
       res.status(401).json({
         error: "Invalid username or password.  Please re-attempt login.",
       });
     }
+  });
+});
+
+app.post("/api/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Error closing session:", err);
+      res.status(500).json({ error: "Internal error :( try again later" });
+      return;
+    }
+    res.json({ message: "Logout successful!" });
   });
 });
 

@@ -26,6 +26,8 @@ function Login() {
         .post(url, loginData)
         .then((response) => {
           alert(response.data.message);
+          localStorage.setItem("loggedin", true);
+          localStorage.setItem("uid", response.data.user.UserID);
         })
         .catch((error) => {
           alert(error.response.data.error);
