@@ -6,6 +6,10 @@ import NewsButton from "./NewsButton";
 import TipsButton from "./TipsButton";
 import ProfileButton from "./ProfileButton";
 
+const profroute = localStorage.getItem("loggedin")
+  ? "/ProfilePage"
+  : "/LoginPage";
+
 export default function Navbar() {
   return (
     <nav>
@@ -21,7 +25,7 @@ export default function Navbar() {
       <Link to="/TipsPage">
         <TipsButton />
       </Link>
-      <Link to="/ProfilePage">
+      <Link to={profroute}>
         <ProfileButton />
       </Link>
     </nav>

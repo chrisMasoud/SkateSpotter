@@ -1,4 +1,6 @@
 const express = require("express");
+const fileUpload = require("express-fileupload");
+const path = require("path");
 const session = require("express-session");
 const mysql = require("mysql");
 const fs = require("fs");
@@ -6,6 +8,17 @@ const bodyParser = require("body-parser");
 const md5 = require("md5");
 const app = express();
 app.use(express.json());
+app.use(fileUpload());
+app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
+const { createProxyMiddleware: proxy } = require("http-proxy-middleware");
+app.use(
+  "/skate-spotter",
+  proxy("http://localhost:3000", {
+    proxyReqPathResolver: (req) => {
+      return `/skate-spotter${req.url}`;
+    },
+  })
+);
 app.use(
   session({
     secret: "replace-with-something-else",
@@ -220,6 +233,60 @@ app.post("/api/signup", (req, res) => {
           "Registration successful!  Click OK and you will be redirected to the login page.",
       });
     });
+  });
+});
+
+app.post("/api/upload", (req, res) => {
+  if (!req.files || !req.files.image || !req.body.uid) {
+    return res.status(400).json({ error: "Invalid HTTP request" });
+  }
+
+  const image = req.files.image;
+  const uid = req.body.uid;
+  const filename = randomfilename(image.name);
+  const filepath = __dirname + "/public/uploads/" + filename;
+  image.mv(filepath, (err) => {
+    if (err) {
+      console.error("Error saving the file:", err);
+      return res.status(500).json({ error: "Failed to upload the file" });
+    }
+    const relativepath = "/uploads/" + filename;
+    const query = `UPDATE Users SET Avatar = '${relativepath}' WHERE UserID = ${uid}`;
+    connection.query(query, (err, results) => {
+      if (err) {
+        console.error("Error updating user profile:", err);
+        return res
+          .status(500)
+          .json({ error: "Failed to update user profile in database" });
+      }
+      res.json({ relativepath });
+    });
+  });
+});
+
+function randomfilename(file) {
+  const ext = file.split(".").pop();
+  const rand = `${Date.now()}_${Math.floor(Math.random() * 99999)}.${ext}`;
+  return rand;
+}
+
+app.get("/api/getprofileimage/:uid", (req, res) => {
+  const uid = req.params.uid;
+  const query = `SELECT Avatar FROM Users WHERE UserID = ${uid}`;
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error("Error fetching user avatar:", err);
+      return res
+        .status(500)
+        .json({ error: "Unable to fetch user avatar from db" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Uid not found in database" });
+    }
+
+    const url = results[0].Avatar;
+    res.json({ url });
   });
 });
 
