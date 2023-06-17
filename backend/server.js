@@ -84,10 +84,42 @@ app.post("/api/login", (req, res) => {
     }
     if (results.length > 0) {
       req.session.user = email;
-      res.json({ message: "Login successful!", user: results[0]});
+      res.json({
+        message: "Login successful! Click OK to be redirected.",
+        user: results[0],
+        redirect: "/",
+      });
     } else {
       res.status(401).json({
         error: "Invalid username or password.  Please re-attempt login.",
+      });
+    }
+  });
+});
+
+app.post("/api/google-login", (req, res) => {
+  const { email } = req.body;
+  if (!email) {
+    return res.status(400).json({ error: "Email is required!" });
+  }
+  const query = `SELECT * FROM Users WHERE email = '${email}'`;
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error("Error sending login query:", err);
+      res.status(500).json({ error: "Internal error :( try again later" });
+      return;
+    }
+    if (results.length > 0) {
+      req.session.user = email;
+      res.json({
+        message: "Login successful! Click OK to be redirected.",
+        user: results[0],
+        redirect: "/",
+      });
+    } else {
+      res.status(401).json({
+        error:
+          "Invalid email address.  Please re-attempt login or register an account.",
       });
     }
   });
@@ -160,14 +192,34 @@ app.post("/api/signup", (req, res) => {
   const s_zip = sanitize(zip);
   const s_email = sanitize(email);
 
-  const query = `INSERT INTO Users (FirstName, LastName, ZIP, Email, Password) VALUES ('${s_firstname}', '${s_lastname}', '${s_zip}', '${s_email}', '${hash}')`;
-  connection.query(query, (err, results) => {
+  const conflict_check = `SELECT * FROM Users WHERE email = '${s_email}'`;
+  connection.query(conflict_check, (err, results) => {
     if (err) {
-      console.error("Error sending registration query:", err);
+      console.error("Error:", err);
       res.status(500).json({ error: "Internal error :( try again later" });
-      return;
     }
-    res.json({ message: "Registration successful!" });
+
+    if (results.length > 0) {
+      return res.json({
+        message:
+          "An account with this email already exists.  Click OK and you will be redirected to the login page.",
+        redirect: "/LoginPage",
+      });
+    }
+
+    const query = `INSERT INTO Users (FirstName, LastName, ZIP, Email, Password) VALUES ('${s_firstname}', '${s_lastname}', '${s_zip}', '${s_email}', '${hash}')`;
+    connection.query(query, (err, results) => {
+      if (err) {
+        console.error("Error sending registration query:", err);
+        res.status(500).json({ error: "Internal error :( try again later" });
+        return;
+      }
+      return res.status(200).json({
+        redirect: "/LoginPage",
+        message:
+          "Registration successful!  Click OK and you will be redirected to the login page.",
+      });
+    });
   });
 });
 

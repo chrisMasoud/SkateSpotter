@@ -1,5 +1,6 @@
 import SearchBar from "./SearchBar";
 import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
 import Logo from "./Logo";
 
 function Header({ onZipCodeSearch }) {
@@ -7,7 +8,7 @@ function Header({ onZipCodeSearch }) {
     <header className="header">
       <Logo />
       <SearchBar onZipCodeSearch={onZipCodeSearch} />
-      <LoginButton />
+      {localStorage.getItem("loggedin") ? <LogoutButton /> : <LoginButton />}
     </header>
   );
 }
