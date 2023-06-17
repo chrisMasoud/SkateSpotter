@@ -38,7 +38,7 @@ function Card({ data, onClick }) {
             </p>
           </>
         ) : (
-          <p className="p1">Weather data not available</p>
+          <p className="p1">Current Conditions: Weather data not available</p>
         )}
       </div>
       <img className="img" src={data.Spotimage} />
