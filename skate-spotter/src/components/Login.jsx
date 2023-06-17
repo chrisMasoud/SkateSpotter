@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
+import jwt_decode from "jwt-decode";
 import axios from "axios";
 
 function Login() {
+  const nav = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -28,6 +30,7 @@ function Login() {
           alert(response.data.message);
           localStorage.setItem("loggedin", true);
           localStorage.setItem("uid", response.data.user.UserID);
+          if (response.data.redirect) nav(response.data.redirect);
         })
         .catch((error) => {
           alert(error.response.data.error);
@@ -43,9 +46,23 @@ function Login() {
     );
   };
 
-  const handleGoogleSuccess = (response) => {
-    console.log(response);
-    // Perform any additional actions with the response data
+  const handleGoogleSuccess = (res) => {
+    const gdata = jwt_decode(res.credential);
+    console.log(gdata);
+    const googleData = {
+      email: gdata.email || "",
+    };
+    axios
+      .post("/api/google-login", googleData)
+      .then((response) => {
+        alert(response.data.message);
+        localStorage.setItem("loggedin", true);
+        localStorage.setItem("uid", response.data.user.UserID);
+        if (response.data.redirect) nav(response.data.redirect);
+      })
+      .catch((error) => {
+        alert(error.response.data.error);
+      });
   };
 
   const handleGoogleFailure = (error) => {
@@ -87,6 +104,15 @@ function Login() {
           <button type="submit" className="signup-button">
             Login
           </button>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <GoogleLogin
+              clientId="766515958928-fnqq80r9t4abrues25eht0c8iled30lf.apps.googleusercontent.com"
+              onSuccess={handleGoogleSuccess}
+              onFailure={handleGoogleFailure}
+              cookiePolicy={"single_host_origin"}
+              scope="profile email https://www.googleapis.com/auth/user.addresses.read"
+            />
+          </div>
         </form>
         <div className="signup-sect">
           <p>

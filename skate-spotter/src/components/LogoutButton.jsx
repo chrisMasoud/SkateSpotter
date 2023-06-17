@@ -1,34 +1,41 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function LogoutButton() {
-  const history = useHistory();
+  const nav = useNavigate();
   const handleLogout = () => {
     axios
       .post("/api/logout")
       .then((response) => {
         localStorage.removeItem("loggedin");
         localStorage.removeItem("uid");
-        history.push("/LoginPage");
+        alert(
+          "You have been logged out.  Click OK to return to the home page."
+        );
+        nav("/");
       })
       .catch((error) => {
         console.error("Logout error:", error);
       });
-    }
+  };
   return (
-    <button onClick={handleLogout}>
+    <button className="buttonLogin" onClick={handleLogout}>
       <span>
         <svg
-          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
           viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
           width="24"
           height="24"
         >
-          <path fill="none" d="M0 0h24v24H0z"></path>
           <path
-            fill="currentColor"
-            d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
           ></path>
         </svg>{" "}
         Logout

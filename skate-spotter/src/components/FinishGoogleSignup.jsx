@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
-import jwt_decode from "jwt-decode";
 import axios from "axios";
 
-function Signup() {
+function FinishGoogleSignup() {
   const nav = useNavigate();
+  const location = useLocation();
   const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
+    firstname: location?.state?.firstname || "",
+    lastname: location?.state?.lastname || "",
     zip: "",
-    email: "",
+    email: location?.state?.email || "",
     password: "",
     confirm: "",
   });
@@ -27,14 +27,7 @@ function Signup() {
 
     const { firstname, lastname, zip, email, password, confirm } = formData;
 
-    if (
-      firstname === "" ||
-      lastname === "" ||
-      zip === "" ||
-      email === "" ||
-      password === "" ||
-      confirm === ""
-    ) {
+    if (zip === "" || password === "" || confirm === "") {
       setError(true);
     } else {
       axios
@@ -59,22 +52,6 @@ function Signup() {
     );
   };
 
-  const handleGoogleSuccess = (res) => {
-    const gdata = jwt_decode(res.credential);
-    console.log(gdata);
-    const googleData = {
-      firstname: gdata.given_name || "",
-      lastname: gdata.family_name || "",
-      email: gdata.email || "",
-    };
-    nav("/FinishGoogleSignup", { state: googleData });
-  };
-
-  const handleGoogleFailure = (error) => {
-    console.log(error);
-    // Handle the error as needed
-  };
-
   return (
     <div className="forms">
       <div className="signup-box">
@@ -85,27 +62,11 @@ function Signup() {
           action=""
           onSubmit={(e) => handleSubmit(e)}
         >
-          <span className="signup-hdr">Sign up</span>
+          <span className="signup-hdr">Complete your registration</span>
           <span className="signup-sub">
-            Create an account using your email.
+            One last step before we can create your account.
           </span>
           <div className="signup-container">
-            <input
-              value={formData.firstname}
-              onChange={handleChange}
-              type="text"
-              className="signup-input"
-              placeholder="First Name"
-              name="firstname"
-            />
-            <input
-              value={formData.lastname}
-              onChange={handleChange}
-              type="text"
-              className="signup-input"
-              placeholder="Last Name"
-              name="lastname"
-            />
             <input
               value={formData.zip}
               onChange={handleChange}
@@ -113,14 +74,6 @@ function Signup() {
               className="signup-input"
               placeholder="ZIP"
               name="zip"
-            />
-            <input
-              value={formData.email}
-              onChange={handleChange}
-              type="email"
-              className="signup-input"
-              placeholder="Email"
-              name="email"
             />
             <input
               value={formData.password}
@@ -140,26 +93,12 @@ function Signup() {
             />
           </div>
           <button type="submit" className="signup-button">
-            Register
+            Finish
           </button>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <GoogleLogin
-              clientId="766515958928-fnqq80r9t4abrues25eht0c8iled30lf.apps.googleusercontent.com"
-              onSuccess={handleGoogleSuccess}
-              onFailure={handleGoogleFailure}
-              cookiePolicy={"single_host_origin"}
-              scope="profile email https://www.googleapis.com/auth/user.addresses.read"
-            />
-          </div>
         </form>
-        <div className="signup-sect">
-          <p>
-            Already have an account? <Link to="/LoginPage">Login here!</Link>
-          </p>
-        </div>
       </div>
     </div>
   );
 }
 
-export default Signup;
+export default FinishGoogleSignup;
