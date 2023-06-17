@@ -1,14 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import AddSpotButton from "./AddSpotButton";
 import FavSpotsButton from "./FavSpotsButton";
 import NewsButton from "./NewsButton";
 import TipsButton from "./TipsButton";
 import ProfileButton from "./ProfileButton";
-
-const profroute = localStorage.getItem("loggedin")
-  ? "/ProfilePage"
-  : "/LoginPage";
 
 export default function Navbar() {
   return (
@@ -25,9 +21,15 @@ export default function Navbar() {
       <Link to="/TipsPage">
         <TipsButton />
       </Link>
-      <Link to={profroute}>
-        <ProfileButton />
-      </Link>
+      {localStorage.getItem("loggedin") ? (
+        <Link to="/ProfilePage">
+          <ProfileButton />
+        </Link>
+      ) : (
+        <Link to="/LoginPage">
+          <ProfileButton />
+        </Link>
+      )}
     </nav>
   );
 }
