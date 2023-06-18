@@ -97,6 +97,7 @@ app.post("/api/login", (req, res) => {
       return;
     }
     if (results.length > 0) {
+      req.session.uid = results[0].UserID;
       req.session.user = email;
       res.json({
         message: "Login successful! Click OK to be redirected.",
@@ -124,6 +125,7 @@ app.post("/api/google-login", (req, res) => {
       return;
     }
     if (results.length > 0) {
+      req.session.uid = results[0].UserID;
       req.session.user = email;
       res.json({
         message: "Login successful! Click OK to be redirected.",
@@ -326,6 +328,23 @@ app.post("/add-spot", (req, res) => {
   });
 });
 
+app.post("/api/bookmarks", (req, res) => {
+  const { SpotID, UserID } = req.body;
+
+  const query = `INSERT INTO Bookmarks (SpotID, UserID) VALUES (?, ?)`;
+  const values = [SpotID, UserID];
+
+  connection.query(query, values, (error, results) => {
+    if (error) {
+      console.error("Failed to add bookmark:", error);
+      res.status(500).send("Failed to add bookmark");
+    } else {
+      console.log("Bookmark added successfully!");
+      res.status(200).send("Bookmark added successfully");
+    }
+  });
+});
+
 app.post("/api/reports", (req, res) => {
   const { SpotID } = req.body;
 
@@ -336,6 +355,26 @@ app.post("/api/reports", (req, res) => {
       res.status(500).json({ error: "Failed to insert SpotID." });
     } else {
       res.json({ message: "SpotID inserted successfully." });
+    }
+  });
+});
+
+app.get("/api/bookmarks/:userId", (req, res) => {
+  const userId = req.params.userId;
+
+  const query = `
+    SELECT SkateSpot.*
+    FROM SkateSpot
+    INNER JOIN Bookmarks ON SkateSpot.SpotID = Bookmarks.SpotID
+    WHERE Bookmarks.UserID = ?
+  `;
+
+  connection.query(query, [userId], (error, results) => {
+    if (error) {
+      console.error("Failed to fetch bookmarks:", error);
+      res.status(500).json({ error: "Failed to fetch bookmarks" });
+    } else {
+      res.json(results);
     }
   });
 });

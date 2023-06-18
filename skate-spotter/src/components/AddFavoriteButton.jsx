@@ -1,12 +1,8 @@
 import React from "react";
 
-function AddFavoriteButton() {
-  function handleClick(event) {
-    console.log("Fav clicked");
-  }
-
+function AddFavoriteButton({ onClick }) {
   return (
-    <button className="navButton" onClick={handleClick}>
+    <button className="navButton" onClick={onClick}>
       <span>Add to Favorites</span>
     </button>
   );

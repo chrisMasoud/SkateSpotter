@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import AddSpotPage from "./components/AddSpotPage";
@@ -12,6 +12,10 @@ import FinishGoogleSignup from "./components/FinishGoogleSignup";
 import SpotDetailPage from "./components/SpotDetailPage";
 
 const App = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />

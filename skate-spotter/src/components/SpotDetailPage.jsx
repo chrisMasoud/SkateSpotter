@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReviewCard from "./ReviewCard";
 import { useLocation } from "react-router-dom";
 import AddFavoriteButton from "./AddFavoriteButton";
@@ -10,6 +10,22 @@ import axios from "axios";
 export default function SpotDetailPage() {
   const location = useLocation();
   const { data, weather } = location?.state || {};
+  const uid = localStorage.getItem("uid");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const handleFavorite = () => {
+    axios
+      .post("/api/bookmarks", { SpotID: data.SpotID, UserID: uid })
+      .then((response) => {
+        console.log("Spot bookmarked successfully!");
+      })
+      .catch((error) => {
+        console.error("Failed to bookmark spot:", error);
+      });
+  };
 
   const handleReportClick = () => {
     axios
@@ -24,9 +40,9 @@ export default function SpotDetailPage() {
 
   return (
     <>
-      <DetailHeader />
+      <DetailHeader data={data.SpotName} />
       <nav style={{ width: "1890px" }}>
-        <AddFavoriteButton />
+        <AddFavoriteButton onClick={handleFavorite} />
         <ReportButton onClick={handleReportClick} />
       </nav>
       <div className="details">
@@ -36,7 +52,6 @@ export default function SpotDetailPage() {
           className="spotImage"
         />
         <div>
-          <h1>{data.SpotName}</h1>
           <p>
             Location: {data.Latitude}, {data.Longitude}
           </p>
