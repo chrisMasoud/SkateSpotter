@@ -58,7 +58,7 @@ export default function AddSpotForm() {
           />
           <input
             className="signup-input"
-            type="number"
+            type="text"
             placeholder="Enter Longitude"
             value={longitude}
             onChange={(e) => setLongitude(e.target.value)}

@@ -3,6 +3,7 @@ import ReviewCard from "./ReviewCard";
 import { useLocation } from "react-router-dom";
 import AddFavoriteButton from "./AddFavoriteButton";
 import ReportButton from "./ReportButton";
+import ReviewForm from "./ReviewForm";
 
 export default function SpotDetailPage() {
   const location = useLocation();
@@ -36,8 +37,9 @@ export default function SpotDetailPage() {
         )}
         <p>{data.Descriptions}</p>
       </div>
-      {/* <ReviewCard />
-      <ReviewCard /> */}
+      <ReviewCard />
+      <ReviewCard />
+      <ReviewForm />
     </div>
   );
 }
