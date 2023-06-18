@@ -7,6 +7,7 @@ const fs = require("fs");
 const bodyParser = require("body-parser");
 const md5 = require("md5");
 const app = express();
+
 app.use(express.json());
 app.use(fileUpload());
 app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
@@ -287,6 +288,41 @@ app.get("/api/getprofileimage/:uid", (req, res) => {
 
     const url = results[0].Avatar;
     res.json({ url });
+  });
+});
+
+app.post("/add-spot", (req, res) => {
+  const { spotName, latitude, longitude, spotRating, spotDescription } =
+    req.body;
+  const spotImage = req.files.spotImage;
+  const imageFileName = `${Date.now()}-${spotImage.name}`;
+  spotImage.mv(path.join(__dirname, "public", imageFileName), (err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Error uploading image");
+    }
+
+    const sql =
+      "INSERT INTO SkateSpot (SpotName, Latitude, Longitude, Rating, Descriptions, Spotimage) VALUES (?, ?, ?, ?, ?, ?)";
+    connection.query(
+      sql,
+      [
+        spotName,
+        latitude,
+        longitude,
+        spotRating,
+        spotDescription,
+        imageFileName,
+      ],
+      (err, result) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).send("Error inserting data into the database");
+        }
+        console.log("Spot added successfully");
+        res.status(200).send("Spot added successfully");
+      }
+    );
   });
 });
 

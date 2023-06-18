@@ -8,7 +8,11 @@ export default function SpotDetailPage() {
 
   return (
     <div className="details">
-      <img src={data.Spotimage} alt="No Image Found" className="spotImage" />
+      <img
+        src={`/uploads/${data.Spotimage}`}
+        alt="No Image Found"
+        className="spotImage"
+      />
       <div>
         <h1>{data.SpotName}</h1>
         <p>
