@@ -296,7 +296,7 @@ app.post("/add-spot", (req, res) => {
     req.body;
   const spotImage = req.files.spotImage;
   const imageFileName = `${Date.now()}-${spotImage.name}`;
-  spotImage.mv(path.join(__dirname, "public", imageFileName), (err) => {
+  spotImage.mv(path.join(__dirname, "public/uploads", imageFileName), (err) => {
     if (err) {
       console.error(err);
       return res.status(500).send("Error uploading image");

@@ -11,7 +11,7 @@ export default function SpotDetailPage() {
 
   return (
     <div className="details">
-      <nav style={{ width: "1900px" }}>
+      <nav style={{ width: "1890px" }}>
         <AddFavoriteButton />
         <ReportButton />
       </nav>
