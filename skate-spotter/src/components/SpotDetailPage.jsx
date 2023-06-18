@@ -5,17 +5,29 @@ import AddFavoriteButton from "./AddFavoriteButton";
 import ReportButton from "./ReportButton";
 import ReviewForm from "./ReviewForm";
 import DetailHeader from "./DetailHeader";
+import axios from "axios";
 
 export default function SpotDetailPage() {
   const location = useLocation();
   const { data, weather } = location?.state || {};
+
+  const handleReportClick = () => {
+    axios
+      .post("/api/reports", { SpotID: data.SpotID })
+      .then((response) => {
+        console.log("Report Sumbitted");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <>
       <DetailHeader />
       <nav style={{ width: "1890px" }}>
         <AddFavoriteButton />
-        <ReportButton />
+        <ReportButton onClick={handleReportClick} />
       </nav>
       <div className="details">
         <img

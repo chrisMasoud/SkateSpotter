@@ -326,6 +326,20 @@ app.post("/add-spot", (req, res) => {
   });
 });
 
+app.post("/api/reports", (req, res) => {
+  const { SpotID } = req.body;
+
+  const insertQuery = "INSERT INTO Reports (SpotID) VALUES (?)";
+  connection.query(insertQuery, [SpotID], (error, results) => {
+    if (error) {
+      console.error("Error inserting SpotID:", error);
+      res.status(500).json({ error: "Failed to insert SpotID." });
+    } else {
+      res.json({ message: "SpotID inserted successfully." });
+    }
+  });
+});
+
 // This MUST be at the bottom
 app.listen(5000, () => {
   console.log("Server started on port 5000");

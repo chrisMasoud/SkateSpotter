@@ -1,12 +1,8 @@
 import React from "react";
 
-function ReportButton() {
-  function handleClick(event) {
-    console.log("Report clicked");
-  }
-
+function ReportButton({ onClick }) {
   return (
-    <button className="navButton" onClick={handleClick}>
+    <button className="navButton" onClick={onClick}>
       <span>Report Spot</span>
     </button>
   );

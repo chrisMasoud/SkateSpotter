@@ -67,7 +67,6 @@ function Login() {
 
   const handleGoogleFailure = (error) => {
     console.log(error);
-    // Handle the error as needed
   };
 
   return (
