@@ -128,7 +128,7 @@ h1 {
 
 .card {
   width: 1200px;
-  height: 200px;
+  height: 00px;
   background: white;
   border-radius: 20px;
   display: flex;
@@ -139,6 +139,23 @@ h1 {
 }
 
 .card:hover {
+  transform: scale(1.1, 1.1);
+  z-index: 9999;
+}
+
+.reviewCard {
+  width: 500px;
+  height: 350px;
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  transition: 0.5s ease-in-out;
+}
+
+.reviewCard:hover {
   transform: scale(1.1, 1.1);
   z-index: 9999;
 }
