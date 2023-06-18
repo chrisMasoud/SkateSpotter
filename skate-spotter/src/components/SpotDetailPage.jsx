@@ -1,6 +1,8 @@
 import React from "react";
 import ReviewCard from "./ReviewCard";
 import { useLocation } from "react-router-dom";
+import AddFavoriteButton from "./AddFavoriteButton";
+import ReportButton from "./ReportButton";
 
 export default function SpotDetailPage() {
   const location = useLocation();
@@ -8,6 +10,10 @@ export default function SpotDetailPage() {
 
   return (
     <div className="details">
+      <nav style={{ width: "1900px" }}>
+        <AddFavoriteButton />
+        <ReportButton />
+      </nav>
       <img
         src={`/uploads/${data.Spotimage}`}
         alt="No Image Found"

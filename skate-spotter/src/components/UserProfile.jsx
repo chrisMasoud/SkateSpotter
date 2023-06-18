@@ -58,10 +58,6 @@ export default function UserProfile() {
         <UploadFilePrompt onImageSelect={handleImageSelect} />
       </div>
       <div className="profileCards">
-        <label className="h1" htmlFor="spotsAdded">
-          Spots Added:{" "}
-        </label>
-        {/* <Card id="spotsAdded" /> */}
         <label className="h1" htmlFor="favSpots">
           Favorite Spots:{" "}
         </label>
