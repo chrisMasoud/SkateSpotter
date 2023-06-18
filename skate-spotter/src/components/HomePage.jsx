@@ -9,7 +9,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
-  const [mapCenter, setMapCenter] = useState({ lat: 40.7529, lng: -73.4267 });
+  const [mapCenter, setMapCenter] = useState({ lat: 40.72417, lng: -73.55952 });
   const [spotData, setSpotData] = useState([]);
   const navigate = useNavigate();
 

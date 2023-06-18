@@ -16,8 +16,8 @@ const containerStyle = {
 };
 
 const defualtCenter = {
-  lat: 40.7529,
-  lng: -73.4267,
+  lat: 40.71417,
+  lng: -73.55952,
 };
 
 function Map({ center, spots }) {
@@ -52,7 +52,7 @@ function Map({ center, spots }) {
         mapContainerStyle={containerStyle}
         defualtCenter={defualtCenter}
         center={center}
-        zoom={16}
+        zoom={14}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
