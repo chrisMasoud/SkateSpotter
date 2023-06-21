@@ -41,7 +41,7 @@ export default function SpotDetailPage() {
   return (
     <>
       <DetailHeader data={data.SpotName} />
-      <nav style={{ width: "1890px" }}>
+      <nav>
         <AddFavoriteButton onClick={handleFavorite} />
         <ReportButton onClick={handleReportClick} />
       </nav>
