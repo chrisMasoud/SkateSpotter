@@ -33,6 +33,7 @@ export default function SpotDetailPage() {
       .post("/api/bookmarks", { SpotID: data.SpotID, UserID: uid })
       .then((response) => {
         console.log("Spot bookmarked successfully!");
+        alert("Spot Bookmarked.");
       })
       .catch((error) => {
         console.error("Failed to bookmark spot:", error);
@@ -44,6 +45,7 @@ export default function SpotDetailPage() {
       .post("/api/reports", { SpotID: data.SpotID })
       .then((response) => {
         console.log("Report Sumbitted");
+        alert("Spot Reported.");
       })
       .catch((error) => {
         console.log(error);
