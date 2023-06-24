@@ -804,7 +804,6 @@ nav {
   display: flex;
   justify-content: space-evenly;
   z-index: 9999;
-  width: 2527px;
 }
 
 .signup-box {
