@@ -1,16 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ReviewCard from "./ReviewCard";
 import { useLocation } from "react-router-dom";
 import AddFavoriteButton from "./AddFavoriteButton";
 import ReportButton from "./ReportButton";
-import ReviewForm from "./ReviewForm";
 import DetailHeader from "./DetailHeader";
 import axios from "axios";
+import AddReviewButton from "./AddReviewButton";
 
 export default function SpotDetailPage() {
+  const [reviewData, setReviewData] = useState([]);
   const location = useLocation();
   const { data, weather } = location?.state || {};
   const uid = localStorage.getItem("uid");
+
+  useEffect(() => {
+    axios
+      .get(`/api/reviews/${data.SpotID}`)
+      .then((response) => {
+        setReviewData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching news data:", error);
+      });
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -67,9 +79,12 @@ export default function SpotDetailPage() {
           )}
           <p>{data.Descriptions}</p>
         </div>
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewForm />
+        <section className="spotCardSection">
+          {reviewData.map((reviewItem) => (
+            <ReviewCard key={reviewItem.reviewID} data={reviewItem} />
+          ))}
+          <AddReviewButton data={data.SpotID} />
+        </section>
       </div>
     </>
   );

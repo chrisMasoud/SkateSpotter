@@ -379,6 +379,39 @@ app.get("/api/bookmarks/:userId", (req, res) => {
   });
 });
 
+app.get("/api/reviews/:spotId", (req, res) => {
+  const spotId = req.params.spotId;
+
+  const query = `
+    SELECT *
+    FROM Review
+    WHERE Review.spotID = ?
+  `;
+
+  connection.query(query, [spotId], (error, results) => {
+    if (error) {
+      console.error("Failed to fetch reviews:", error);
+      res.status(500).json({ error: "Failed to fetch reviews" });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+app.post("/add-review", (req, res) => {
+  const { title, rating, description, spotId } = req.body;
+  const sql =
+    "INSERT INTO Review (reviewTitle, rating, reviewText, spotID) VALUES (?, ?, ?, ?)";
+  connection.query(sql, [title, rating, description, spotId], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Error inserting data into the database");
+    }
+    console.log("Review added successfully");
+    res.status(200).send("Review added successfully");
+  });
+});
+
 // This MUST be at the bottom
 app.listen(5000, () => {
   console.log("Server started on port 5000");

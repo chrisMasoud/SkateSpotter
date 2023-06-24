@@ -40,7 +40,9 @@ export default function HomePage() {
   };
 
   const handleClick = (spotItem, weather) => {
-    navigate(`/page`, { state: { data: spotItem, weather } });
+    navigate(`/DetailPage/${spotItem.SpotID}`, {
+      state: { data: spotItem, weather },
+    });
   };
 
   return (

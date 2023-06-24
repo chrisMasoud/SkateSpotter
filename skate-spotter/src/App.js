@@ -10,6 +10,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import FinishGoogleSignup from "./components/FinishGoogleSignup";
 import SpotDetailPage from "./components/SpotDetailPage";
+import ReviewFormPage from "./components/ReviewFormPage";
 
 const App = () => {
   useEffect(() => {
@@ -27,7 +28,8 @@ const App = () => {
       <Route path="/LoginPage" element={<Login />} />
       <Route path="/SignupPage" element={<Signup />} />
       <Route path="/FinishGoogleSignup" element={<FinishGoogleSignup />} />
-      <Route path="/page" element={<SpotDetailPage />} />
+      <Route path="/DetailPage/:spotId" element={<SpotDetailPage />} />
+      <Route path="/ReviewFormPage/:spotId" element={<ReviewFormPage />} />
     </Routes>
   );
 };

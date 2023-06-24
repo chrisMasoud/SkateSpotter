@@ -1,43 +1,37 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
-export default function AddSpotForm() {
+export default function ReviewForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [rating, setRating] = useState("");
+  const { spotId } = useParams();
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  //   const formData = new FormData();
-  //   formData.append("spotName", spotName);
-  //   formData.append("latitude", latitude);
-  //   formData.append("longitude", longitude);
-  //   formData.append("spotRating", spotRating);
-  //   formData.append("spotDescription", spotDescription);
-  //   formData.append("spotImage", spotImage);
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("rating", rating);
+    formData.append("spotId", spotId);
 
-  //   try {
-  //     await axios.post("/add-spot", formData, {
-  //       headers: {
-  //         "Content-Type": "multipart/form-data",
-  //       },
-  //     });
-  //     console.log("Spot added successfully");
-  //     setSpotName("");
-  //     setLatitude("");
-  //     setLongitude("");
-  //     setSpotRating("");
-  //     setSpotDescription("");
-  //     setSpotImage(null);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+    try {
+      await axios.post("/add-review", formData);
+      console.log("Review added successfully");
+      setTitle("");
+      setDescription("");
+      setRating("");
+      alert("Review Added Successfully");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="signup-box">
-      <form className="signup-form">
+      <form className="signup-form" onSubmit={handleSubmit}>
         <span className="signup-hdr">Submit a Review</span>
         <span className="signup-sub">
           Share your thoughts and a rating on this spot.
