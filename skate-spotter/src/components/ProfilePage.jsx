@@ -20,7 +20,7 @@ const ProfilePage = () => {
 
   return (
     <>
-      <DetailHeader data={`Welcome Back, ${userData.FirstName}!`} />
+      <DetailHeader data={`Welcome Back, ${userData?.FirstName}!`} />
       <UserProfile data={userData} />
     </>
   );
