@@ -16,12 +16,14 @@ export default function FavSpotsPage() {
         setSpotData(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching news data:", error);
+        console.error("Error fetching spot data:", error);
       });
   }, []);
 
   const handleClick = (spotItem, weather) => {
-    navigate(`/page`, { state: { data: spotItem, weather } });
+    navigate(`/DetailPage/${spotItem.SpotID}`, {
+      state: { data: spotItem, weather },
+    });
   };
 
   return (

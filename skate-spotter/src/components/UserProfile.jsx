@@ -4,13 +4,15 @@ import Card from "./Card";
 import { useState, useEffect } from "react";
 import UploadFilePrompt from "./UploadFilePrompt";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function UserProfile({ data }) {
   const avatarSize = 150;
   const [defaultImageUrl, setDefaultImageUrl] = useState("");
   const [imageUrl, setImageUrl] = useState(defaultImageUrl);
-
+  const [spotData, setSpotData] = useState([]);
   const uid = localStorage.getItem("uid");
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -21,6 +23,17 @@ export default function UserProfile({ data }) {
       })
       .catch((err) => {
         console.error("Error fetching user avatar:", err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`/api/bookmarks/${uid}`)
+      .then((response) => {
+        setSpotData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching spot data:", error);
       });
   }, []);
 
@@ -46,6 +59,12 @@ export default function UserProfile({ data }) {
     reader.readAsDataURL(file);
   };
 
+  const handleClick = (spotItem, weather) => {
+    navigate(`/DetailPage/${spotItem.SpotID}`, {
+      state: { data: spotItem, weather },
+    });
+  };
+
   return (
     <section className="profile">
       <div className="profileForm">
@@ -68,7 +87,11 @@ export default function UserProfile({ data }) {
         <label className="h1" htmlFor="favSpots">
           Favorite Spots:{" "}
         </label>
-        {/* <Card id="favSpots" /> */}
+        <section className="spotCardSection">
+          {spotData.map((spotItem) => (
+            <Card key={spotItem.SpotID} data={spotItem} onClick={handleClick} />
+          ))}
+        </section>
       </div>
     </section>
   );
