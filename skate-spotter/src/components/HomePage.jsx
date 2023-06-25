@@ -20,7 +20,7 @@ export default function HomePage() {
         setSpotData(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching news data:", error);
+        console.error("Error fetching spot data:", error);
       });
   }, []);
 

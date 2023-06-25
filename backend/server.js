@@ -412,6 +412,24 @@ app.post("/add-review", (req, res) => {
   });
 });
 
+app.get("/api/getprofile/:uid", (req, res) => {
+  const uid = req.params.uid;
+  const query = `SELECT * FROM Users WHERE UserID = ${uid}`;
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error("Error fetching user:", err);
+      return res.status(500).json({ error: "Unable to fetch user from db" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Uid not found in database" });
+    }
+
+    const user = results[0];
+    return res.status(200).json(user);
+  });
+});
+
 // This MUST be at the bottom
 app.listen(5000, () => {
   console.log("Server started on port 5000");
