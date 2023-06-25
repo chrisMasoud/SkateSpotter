@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import key from "../key.json";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Footer from './Footer';
 
 export default function HomePage() {
   const [mapCenter, setMapCenter] = useState({ lat: 40.72417, lng: -73.55952 });
@@ -71,6 +72,7 @@ export default function HomePage() {
           <Card key={spotItem.SpotID} data={spotItem} onClick={handleClick} />
         ))}
       </section>
+      <Footer />
     </>
   );
 }
