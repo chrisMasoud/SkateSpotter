@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import UserProfile from "./UserProfile";
-import ProfilePageHeader from "./ProfilePageHeader";
+import DetailHeader from "./DetailHeader";
 import axios from "axios";
 
 const ProfilePage = () => {
@@ -20,7 +20,7 @@ const ProfilePage = () => {
 
   return (
     <>
-      <ProfilePageHeader data={userData} />
+      <DetailHeader data={`Welcome Back, ${userData.FirstName}!`} />
       <UserProfile data={userData} />
     </>
   );

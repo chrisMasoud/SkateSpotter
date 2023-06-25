@@ -1,6 +1,6 @@
 import React from "react";
 import LinkCard from "./LinkCard";
-import NewsPageHeader from "./NewsPageHeader";
+import DetailHeader from "./DetailHeader";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -20,7 +20,7 @@ export default function NewsPage() {
 
   return (
     <>
-      <NewsPageHeader />
+      <DetailHeader data="Skateboarding News" />
       <section className="spotCardSection">
         {newsData.map((newsItem) => (
           <LinkCard key={newsItem.tutorialID} data={newsItem} />

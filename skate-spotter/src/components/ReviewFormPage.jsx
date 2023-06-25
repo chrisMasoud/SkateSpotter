@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import DetailHeader from "./DetailHeader";
 
 export default function ReviewFormPage() {
   const [title, setTitle] = useState("");
@@ -29,40 +30,42 @@ export default function ReviewFormPage() {
     }
   };
   return (
-    <div className="forms">
-      <div className="signup-box">
-        <form className="signup-form" onSubmit={handleSubmit}>
-          <span className="signup-hdr">Submit a Review</span>
-          <span className="signup-sub">
-            Share your thoughts and a rating on this spot.
-          </span>
-          <div className="signup-container">
-            <input
-              className="signup-input"
-              type="text"
-              placeholder="Review Title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <input
-              className="signup-input"
-              type="number"
-              placeholder="Spot Rating"
-              value={rating}
-              onChange={(e) => setRating(e.target.value)}
-            />
-            <textarea
-              className="signup-textarea"
-              placeholder="Review Description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </div>
-          <button type="submit" className="signup-button">
-            Submit
-          </button>
-        </form>
+    <>
+      <DetailHeader data="Submit a Review" />
+      <div className="forms">
+        <div className="signup-box">
+          <form className="signup-form" onSubmit={handleSubmit}>
+            <span className="signup-sub">
+              Share your thoughts and a rating on this spot.
+            </span>
+            <div className="signup-container">
+              <input
+                className="signup-input"
+                type="text"
+                placeholder="Review Title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <input
+                className="signup-input"
+                type="number"
+                placeholder="Spot Rating"
+                value={rating}
+                onChange={(e) => setRating(e.target.value)}
+              />
+              <textarea
+                className="signup-textarea"
+                placeholder="Review Description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
+            <button type="submit" className="signup-button">
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
