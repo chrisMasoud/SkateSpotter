@@ -1,18 +1,12 @@
 import React from "react";
 
-function ReviewCard() {
+function ReviewCard({ data }) {
   return (
     <div className="reviewCard">
       <div className="textBox">
-        <p className="h1">Review Title</p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit
-        </p>
-        <p>Rating: </p>
+        <p className="h1">{data.reviewTitle}</p>
+        <p>{data.reviewText}</p>
+        <p>Rating: {data.rating}/5</p>
       </div>
     </div>
   );

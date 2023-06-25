@@ -2,7 +2,11 @@ import React from "react";
 
 function Logo() {
   return (
-    <img src="SkateSpotter-logo.png" alt="SkateSpotter Logo" className="logo" />
+    <img
+      src={process.env.PUBLIC_URL + "/SkateSpotter-logo.png"}
+      alt="SkateSpotter Logo"
+      className="logo"
+    />
   );
 }
 

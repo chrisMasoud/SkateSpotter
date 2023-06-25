@@ -57,6 +57,20 @@ app.get("/api/spots", (req, res) => {
   });
 });
 
+app.get("/api/searchspots", (req, res) => {
+  const { keyword } = req.query;
+  const query = `SELECT * FROM SkateSpot WHERE SpotName LIKE '%${keyword}%'`;
+
+  connection.query(query, (error, results) => {
+    if (error) {
+      console.error("Error fetching news data:", error);
+      res.status(500).json({ error: "An error occurred" });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
 app.get("/api/news", (req, res) => {
   const query = "SELECT * FROM News";
 
@@ -376,6 +390,70 @@ app.get("/api/bookmarks/:userId", (req, res) => {
     } else {
       res.json(results);
     }
+  });
+});
+
+app.get("/api/reviews/:spotId", (req, res) => {
+  const spotId = req.params.spotId;
+
+  const query = `
+    SELECT *
+    FROM Review
+    WHERE Review.spotID = ?
+  `;
+
+  connection.query(query, [spotId], (error, results) => {
+    if (error) {
+      console.error("Failed to fetch reviews:", error);
+      res.status(500).json({ error: "Failed to fetch reviews" });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+app.post("/add-review", (req, res) => {
+  const { title, rating, description, spotId } = req.body;
+  const sql =
+    "INSERT INTO Review (reviewTitle, rating, reviewText, spotID) VALUES (?, ?, ?, ?)";
+  connection.query(sql, [title, rating, description, spotId], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Error inserting data into the database");
+    }
+    console.log("Review added successfully");
+    res.status(200).send("Review added successfully");
+  });
+});
+
+app.get("/api/getprofile/:uid", (req, res) => {
+  const uid = req.params.uid;
+  const query = `SELECT * FROM Users WHERE UserID = ${uid}`;
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error("Error fetching user:", err);
+      return res.status(500).json({ error: "Unable to fetch user from db" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Uid not found in database" });
+    }
+
+    const user = results[0];
+    return res.status(200).json(user);
+  });
+});
+
+app.post("/support", (req, res) => {
+  const { name, email, description } = req.body;
+  const sql = "INSERT INTO Support (name, email, description) VALUES (?, ?, ?)";
+  connection.query(sql, [name, email, description], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Error inserting data into the database");
+    }
+    console.log("Claim added successfully");
+    res.status(200).send("Claim added successfully");
   });
 });
 

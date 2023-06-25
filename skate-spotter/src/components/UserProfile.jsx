@@ -4,12 +4,15 @@ import Card from "./Card";
 import { useState, useEffect } from "react";
 import UploadFilePrompt from "./UploadFilePrompt";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export default function UserProfile() {
+export default function UserProfile({ data }) {
   const avatarSize = 150;
   const [defaultImageUrl, setDefaultImageUrl] = useState("");
   const [imageUrl, setImageUrl] = useState(defaultImageUrl);
+  const [spotData, setSpotData] = useState([]);
   const uid = localStorage.getItem("uid");
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -20,6 +23,17 @@ export default function UserProfile() {
       })
       .catch((err) => {
         console.error("Error fetching user avatar:", err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`/api/bookmarks/${uid}`)
+      .then((response) => {
+        setSpotData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching spot data:", error);
       });
   }, []);
 
@@ -45,15 +59,27 @@ export default function UserProfile() {
     reader.readAsDataURL(file);
   };
 
+  const handleClick = (spotItem, weather) => {
+    navigate(`/DetailPage/${spotItem.SpotID}`, {
+      state: { data: spotItem, weather },
+    });
+  };
+
   return (
     <section className="profile">
       <div className="profileForm">
         <UserAvatar imageUrl={imageUrl || defaultImageUrl} size={avatarSize} />
-        <h1 style={{ marginTop: "20px" }}>User Name</h1>
-        <h4 style={{ marginTop: "-10px" }}>Zip Code</h4>
+        <h1 style={{ marginTop: "20px" }}>
+          {data?.FirstName} {data?.LastName}
+        </h1>
+        <h4 style={{ marginTop: "-10px" }}>{data?.ZIP}</h4>
         <textarea
           className="profileBio"
           placeholder="Enter your biography..."
+          value={data?.biography}
+          onChange={(e) => {
+            console.log("Bio event clicked");
+          }}
         />
         <UploadFilePrompt onImageSelect={handleImageSelect} />
       </div>
@@ -61,7 +87,11 @@ export default function UserProfile() {
         <label className="h1" htmlFor="favSpots">
           Favorite Spots:{" "}
         </label>
-        {/* <Card id="favSpots" /> */}
+        <section className="spotCardSection">
+          {spotData.map((spotItem) => (
+            <Card key={spotItem.SpotID} data={spotItem} onClick={handleClick} />
+          ))}
+        </section>
       </div>
     </section>
   );

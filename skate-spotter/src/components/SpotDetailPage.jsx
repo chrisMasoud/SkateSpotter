@@ -1,16 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ReviewCard from "./ReviewCard";
 import { useLocation } from "react-router-dom";
 import AddFavoriteButton from "./AddFavoriteButton";
 import ReportButton from "./ReportButton";
-import ReviewForm from "./ReviewForm";
 import DetailHeader from "./DetailHeader";
 import axios from "axios";
+import AddReviewButton from "./AddReviewButton";
 
 export default function SpotDetailPage() {
+  const [reviewData, setReviewData] = useState([]);
   const location = useLocation();
   const { data, weather } = location?.state || {};
   const uid = localStorage.getItem("uid");
+
+  useEffect(() => {
+    axios
+      .get(`/api/reviews/${data.SpotID}`)
+      .then((response) => {
+        setReviewData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching news data:", error);
+      });
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -21,6 +33,7 @@ export default function SpotDetailPage() {
       .post("/api/bookmarks", { SpotID: data.SpotID, UserID: uid })
       .then((response) => {
         console.log("Spot bookmarked successfully!");
+        alert("Spot Bookmarked.");
       })
       .catch((error) => {
         console.error("Failed to bookmark spot:", error);
@@ -32,6 +45,7 @@ export default function SpotDetailPage() {
       .post("/api/reports", { SpotID: data.SpotID })
       .then((response) => {
         console.log("Report Sumbitted");
+        alert("Spot Reported.");
       })
       .catch((error) => {
         console.log(error);
@@ -41,7 +55,7 @@ export default function SpotDetailPage() {
   return (
     <>
       <DetailHeader data={data.SpotName} />
-      <nav style={{ width: "1890px" }}>
+      <nav>
         <AddFavoriteButton onClick={handleFavorite} />
         <ReportButton onClick={handleReportClick} />
       </nav>
@@ -67,9 +81,12 @@ export default function SpotDetailPage() {
           )}
           <p>{data.Descriptions}</p>
         </div>
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewForm />
+        <section className="spotCardSection">
+          {reviewData.map((reviewItem) => (
+            <ReviewCard key={reviewItem.reviewID} data={reviewItem} />
+          ))}
+          <AddReviewButton data={data.SpotID} />
+        </section>
       </div>
     </>
   );

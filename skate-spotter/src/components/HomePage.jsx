@@ -3,6 +3,7 @@ import Header from "./Header";
 import Card from "./Card";
 import Map from "./Map";
 import Navbar from "./Navbar";
+import SearchSpots from "./SearchSpots";
 import { useState, useEffect } from "react";
 import key from "../key.json";
 import axios from "axios";
@@ -20,7 +21,7 @@ export default function HomePage() {
         setSpotData(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching news data:", error);
+        console.error("Error fetching spot data:", error);
       });
   }, []);
 
@@ -39,8 +40,21 @@ export default function HomePage() {
       });
   };
 
+  const handleSpotSearch = (input) => {
+    axios
+      .get('/api/searchspots', { params: { keyword: input,  } })
+      .then((response) => {
+        setSpotData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching spot data:", error);
+      });
+  };
+
   const handleClick = (spotItem, weather) => {
-    navigate(`/page`, { state: { data: spotItem, weather } });
+    navigate(`/DetailPage/${spotItem.SpotID}`, {
+      state: { data: spotItem, weather },
+    });
   };
 
   return (
@@ -48,6 +62,10 @@ export default function HomePage() {
       <Header onZipCodeSearch={handleZipCodeSearch} />
       <Navbar />
       <Map center={mapCenter} spots={spotData} />
+      <div>
+        <SearchSpots onSpotSearch={handleSpotSearch} />
+        <br/>
+      </div>
       <section className="spotCardSection">
         {spotData.map((spotItem) => (
           <Card key={spotItem.SpotID} data={spotItem} onClick={handleClick} />
