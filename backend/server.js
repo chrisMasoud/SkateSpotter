@@ -430,6 +430,19 @@ app.get("/api/getprofile/:uid", (req, res) => {
   });
 });
 
+app.post("/support", (req, res) => {
+  const { name, email, description } = req.body;
+  const sql = "INSERT INTO Support (name, email, description) VALUES (?, ?, ?)";
+  connection.query(sql, [name, email, description], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Error inserting data into the database");
+    }
+    console.log("Claim added successfully");
+    res.status(200).send("Claim added successfully");
+  });
+});
+
 // This MUST be at the bottom
 app.listen(5000, () => {
   console.log("Server started on port 5000");

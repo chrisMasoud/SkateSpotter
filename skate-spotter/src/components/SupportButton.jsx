@@ -1,7 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function SupportButton() {
-  function handleClick(event) {}
+  const navigate = useNavigate();
+
+  function handleClick(event) {
+    navigate("/SupportPage");
+  }
 
   return (
     <button className="buttonLogin" onClick={handleClick}>
