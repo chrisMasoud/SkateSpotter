@@ -42,7 +42,7 @@ export default function HomePage() {
 
   const handleSpotSearch = (input) => {
     axios
-      .get('/api/searchspots', { params: { keyword: input,  } })
+      .get("/api/searchspots", { params: { keyword: input } })
       .then((response) => {
         setSpotData(response.data);
       })
@@ -64,7 +64,7 @@ export default function HomePage() {
       <Map center={mapCenter} spots={spotData} />
       <div>
         <SearchSpots onSpotSearch={handleSpotSearch} />
-        <br/>
+        <br />
       </div>
       <section className="spotCardSection">
         {spotData.map((spotItem) => (
