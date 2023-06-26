@@ -183,13 +183,12 @@ export default function HomePage() {
 
   return (
     <>
-      <Header onZipCodeSearch={handleZipCodeSearch} />
+      <Header onSpotSearch={handleSpotSearch} />
       <Navbar />
       <Map center={mapCenter} spots={spotData} />
       <div>
         <SortSpots value={sortType} onSort={handleSort} />
         <FilterByRating value={ratingFilter} onFilter={handleRatingFilter} />
-        <SearchSpots onSpotSearch={handleSpotSearch} />
         <br />
       </div>
       <section className="spotCardSection">

@@ -1,13 +1,13 @@
-import SearchBar from "./SearchBar";
+import SearchSpots from "./SearchSpots";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import Logo from "./Logo";
 
-function Header({ onZipCodeSearch }) {
+function Header({ onSpotSearch }) {
   return (
     <header className="header">
       <Logo />
-      <SearchBar onZipCodeSearch={onZipCodeSearch} />
+      <SearchSpots onSpotSearch={onSpotSearch} />
       {localStorage.getItem("loggedin") ? <LogoutButton /> : <LoginButton />}
     </header>
   );

@@ -309,7 +309,6 @@ app.get("/api/getprofileimage/:uid", (req, res) => {
   });
 });
 
-
 app.get("/api/getzip/:uid", (req, res) => {
   const uid = req.params.uid;
   const query = "SELECT ZIP FROM Users WHERE UserID = ?";
@@ -482,5 +481,5 @@ app.post("/support", (req, res) => {
 
 // This MUST be at the bottom
 app.listen(8000, () => {
-  console.log("Server started on port 5000");
+  console.log("Server started on port 8000");
 });
