@@ -10,13 +10,14 @@ import { useState, useEffect } from "react";
 import key from "../key.json";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Footer from './Footer';
+import Footer from "./Footer";
 
 export default function HomePage() {
   const [mapCenter, setMapCenter] = useState({ lat: 40.72417, lng: -73.55952 });
   const [spotData, setSpotData] = useState([]);
   const [spotLib, setSpotLib] = useState([]);
   const [sortType, setSortType] = useState("");
+  const [preFilter, setPreFilter] = useState([]);
   const [ratingFilter, setRatingFilter] = useState("");
   const navigate = useNavigate();
 
@@ -26,31 +27,36 @@ export default function HomePage() {
       .then((res) => {
         setSpotData(res.data);
         setSpotLib(res.data);
+        setPreFilter(res.data);
       })
       .catch((err) => {
         console.error("Error fetching spot data:", err);
       });
-      if(localStorage.getItem("loggedin") !== null && localStorage.getItem("uid") !== null){
-        const uid = localStorage.getItem("uid");
-        axios.get(`/api/getzip/${uid}`)
+    if (
+      localStorage.getItem("loggedin") !== null &&
+      localStorage.getItem("uid") !== null
+    ) {
+      const uid = localStorage.getItem("uid");
+      axios
+        .get(`/api/getzip/${uid}`)
         .then((res) => {
           const userzip = res.data.zip;
           const api_key = key.apikey;
           const geocodingApiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${userzip}&key=${api_key}`;
           fetch(geocodingApiUrl)
-          .then((response) => response.json())
-          .then((data) => {
-            const { lat, lng } = data.results[0].geometry.location;
-            setMapCenter({ lat, lng });
-          })
-          .catch((error) => {
-            console.log("Error occurred while geocoding:", error);
-          });
+            .then((response) => response.json())
+            .then((data) => {
+              const { lat, lng } = data.results[0].geometry.location;
+              setMapCenter({ lat, lng });
+            })
+            .catch((error) => {
+              console.log("Error occurred while geocoding:", error);
+            });
         })
         .catch((err) => {
           console.error("Error getting user ZIP code:", err);
         });
-      }      
+    }
   }, []);
 
   const handleZipCodeSearch = (zipCode) => {
@@ -70,16 +76,13 @@ export default function HomePage() {
 
   const handleSpotSearch = (keyword) => {
     let results = [];
-    if(sortType === null || sortType === ""){
-      results = spotLib.filter(
-        (spotItem) =>
-          spotItem.SpotName.toLowerCase().includes(keyword.toLowerCase())
+    if (sortType === null || sortType === "") {
+      results = spotLib.filter((spotItem) =>
+        spotItem.SpotName.toLowerCase().includes(keyword.toLowerCase())
       );
-    }
-    else{
-      results = spotData.filter(
-        (spotItem) =>
-          spotItem.SpotName.toLowerCase().includes(keyword.toLowerCase())
+    } else {
+      results = spotData.filter((spotItem) =>
+        spotItem.SpotName.toLowerCase().includes(keyword.toLowerCase())
       );
     }
     const lat = parseFloat(results[0].Latitude);
@@ -87,8 +90,10 @@ export default function HomePage() {
     const ctr = { lat, lng };
     setMapCenter(ctr);
     setSpotData(results);
+    setPreFilter(results);
     //console.log(sortType);
     setSortType(""); // for some reason this line doesn't update the sort type, but is necessary in order for sort-search to work ??
+    setRatingFilter("");
     //console.log(sortType);
   };
 
@@ -99,12 +104,16 @@ export default function HomePage() {
     switch (type) {
       case "name_a":
         sorted.sort((a, b) =>
-          a.SpotName.localeCompare(b.SpotName, undefined, { sensitivity: "base" })
+          a.SpotName.localeCompare(b.SpotName, undefined, {
+            sensitivity: "base",
+          })
         );
         break;
       case "name_d":
         sorted.sort((a, b) =>
-          b.SpotName.localeCompare(a.SpotName, undefined, { sensitivity: "base" })
+          b.SpotName.localeCompare(a.SpotName, undefined, {
+            sensitivity: "base",
+          })
         );
         break;
       case "rating_a":
@@ -114,16 +123,22 @@ export default function HomePage() {
         sorted.sort((a, b) => b.Rating - a.Rating);
         break;
       default:
+        /*
+        setSpotData(sorted);
+        setPreFilter(sorted);
+        setSortType("");
+        */
         return;
     }
     setSpotData(sorted);
+    setPreFilter(sorted);
   };
 
   const handleRatingFilter = (e) => {
     const rlevel = e.target.value;
     setRatingFilter(rlevel);
-    let filtered = [...spotData];
-    switch(rlevel){
+    let filtered = [...preFilter];
+    switch (rlevel) {
       case "rating1":
         filtered = filtered.filter((spotItem) => spotItem.Rating === 1);
         break;
@@ -140,12 +155,14 @@ export default function HomePage() {
         filtered = filtered.filter((spotItem) => spotItem.Rating === 5);
         break;
       default:
+        setSpotData(filtered);
+        setRatingFilter("");
         return;
     }
     setSpotData(filtered);
-  }
-  
-/*
+  };
+
+  /*
   const handleSpotSearch = (input) => {
     axios
       .get("/api/searchspots", { params: { keyword: input } })
@@ -157,7 +174,6 @@ export default function HomePage() {
       });
   };
 */
-
 
   const handleClick = (spotItem, weather) => {
     navigate(`/DetailPage/${spotItem.SpotID}`, {
