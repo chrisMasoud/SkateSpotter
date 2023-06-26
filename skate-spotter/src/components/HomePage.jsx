@@ -11,6 +11,7 @@ import key from "../key.json";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
+import FilterByDifficulty from "./FilterByDifficulty";
 
 export default function HomePage() {
   const [mapCenter, setMapCenter] = useState({ lat: 40.7529, lng: -73.4267 });
@@ -19,6 +20,7 @@ export default function HomePage() {
   const [sortType, setSortType] = useState("");
   const [preFilter, setPreFilter] = useState([]);
   const [ratingFilter, setRatingFilter] = useState("");
+  const [difficultyFilter, setDifficultyFilter] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -58,21 +60,6 @@ export default function HomePage() {
         });
     }
   }, []);
-
-  const handleZipCodeSearch = (zipCode) => {
-    const api_key = key.apikey;
-    const geocodingApiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipCode}&key=${api_key}`;
-    fetch(geocodingApiUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        const { lat, lng } = data.results[0].geometry.location;
-
-        setMapCenter({ lat, lng });
-      })
-      .catch((error) => {
-        console.log("Error occurred while geocoding:", error);
-      });
-  };
 
   const handleSpotSearch = (keyword) => {
     let results = [];
@@ -162,18 +149,33 @@ export default function HomePage() {
     setSpotData(filtered);
   };
 
-  /*
-  const handleSpotSearch = (input) => {
-    axios
-      .get("/api/searchspots", { params: { keyword: input } })
-      .then((response) => {
-        setSpotData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching spot data:", error);
-      });
+  const handleDifficultyFilter = (e) => {
+    const dlevel = e.target.value;
+    setDifficultyFilter(dlevel);
+    let filtered = [...preFilter];
+    switch (dlevel) {
+      case "Beginner":
+        filtered = filtered.filter(
+          (spotItem) => spotItem.difficulty === "Beginner"
+        );
+        break;
+      case "Intermediate":
+        filtered = filtered.filter(
+          (spotItem) => spotItem.difficulty === "Intermediate"
+        );
+        break;
+      case "Expert":
+        filtered = filtered.filter(
+          (spotItem) => spotItem.difficulty === "Expert"
+        );
+        break;
+      default:
+        setSpotData(filtered);
+        setDifficultyFilter("");
+        return;
+    }
+    setSpotData(filtered);
   };
-*/
 
   const handleClick = (spotItem, weather) => {
     navigate(`/DetailPage/${spotItem.SpotID}`, {
@@ -189,6 +191,10 @@ export default function HomePage() {
       <div className="dropdowns">
         <SortSpots value={sortType} onSort={handleSort} />
         <FilterByRating value={ratingFilter} onFilter={handleRatingFilter} />
+        <FilterByDifficulty
+          value={difficultyFilter}
+          onFilter={handleDifficultyFilter}
+        />
       </div>
       <section className="spotCardSection">
         {spotData.map((spotItem) => (
