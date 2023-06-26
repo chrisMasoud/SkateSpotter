@@ -3,6 +3,11 @@ import { useState } from "react";
 
 function SearchSpots({ onSpotSearch }) {
   const [searchTerm, setSearchTerm] = useState("");
+  
+  /*
+  const [sortBy, setSortBy] = useState("");
+  const [filterBy, setFilterBy] = useState("");
+  */
 
   function handleSearch() {
     onSpotSearch(searchTerm);

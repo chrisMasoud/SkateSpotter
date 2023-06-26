@@ -57,6 +57,7 @@ app.get("/api/spots", (req, res) => {
   });
 });
 
+/*
 app.get("/api/searchspots", (req, res) => {
   const { keyword } = req.query;
   const query = `SELECT * FROM SkateSpot WHERE SpotName LIKE '%${keyword}%'`;
@@ -70,6 +71,7 @@ app.get("/api/searchspots", (req, res) => {
     }
   });
 });
+*/
 
 app.get("/api/news", (req, res) => {
   const query = "SELECT * FROM News";
@@ -304,6 +306,27 @@ app.get("/api/getprofileimage/:uid", (req, res) => {
 
     const url = results[0].Avatar;
     res.json({ url });
+  });
+});
+
+
+app.get("/api/getzip/:uid", (req, res) => {
+  const uid = req.params.uid;
+  const query = "SELECT ZIP FROM Users WHERE UserID = ?";
+  connection.query(query, [uid], (err, results) => {
+    if (err) {
+      console.error("Error fetching user ZIP:", err);
+      return res
+        .status(500)
+        .json({ error: "Unable to fetch user ZIP from db" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Uid not found in database" });
+    }
+
+    const zip = results[0].ZIP;
+    res.json({ zip });
   });
 });
 
