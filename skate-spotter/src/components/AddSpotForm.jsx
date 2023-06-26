@@ -8,6 +8,7 @@ export default function AddSpotForm() {
   const [spotRating, setSpotRating] = useState("");
   const [spotDescription, setSpotDescription] = useState("");
   const [spotImage, setSpotImage] = useState(null);
+  const [difficulty, setDifficulty] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,6 +20,7 @@ export default function AddSpotForm() {
     formData.append("spotRating", spotRating);
     formData.append("spotDescription", spotDescription);
     formData.append("spotImage", spotImage);
+    formData.append("difficulty", difficulty);
 
     try {
       await axios.post("/add-spot", formData, {
@@ -33,6 +35,7 @@ export default function AddSpotForm() {
       setSpotRating("");
       setSpotDescription("");
       setSpotImage(null);
+      setDifficulty("");
     } catch (error) {
       console.error(error);
     }
@@ -48,6 +51,7 @@ export default function AddSpotForm() {
             placeholder="Enter Spot Name"
             value={spotName}
             onChange={(e) => setSpotName(e.target.value)}
+            required
           />
           <input
             className="signup-input"
@@ -55,6 +59,7 @@ export default function AddSpotForm() {
             placeholder="Enter Latitude"
             value={latitude}
             onChange={(e) => setLatitude(e.target.value)}
+            required
           />
           <input
             className="signup-input"
@@ -62,19 +67,42 @@ export default function AddSpotForm() {
             placeholder="Enter Longitude"
             value={longitude}
             onChange={(e) => setLongitude(e.target.value)}
+            required
           />
-          <input
+          <select
             className="signup-input"
-            type="number"
-            placeholder="Enter Spot Rating"
             value={spotRating}
             onChange={(e) => setSpotRating(e.target.value)}
-          />
+            required
+          >
+            <option value="" disabled>
+              Enter Spot Rating
+            </option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <select
+            className="signup-input"
+            value={difficulty}
+            onChange={(e) => setDifficulty(e.target.value)}
+            required
+          >
+            <option value="" disabled>
+              Enter Spot Difficulty
+            </option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Expert">Expert</option>
+          </select>
           <textarea
             className="signup-textarea"
             placeholder="Enter Spot Description"
             value={spotDescription}
             onChange={(e) => setSpotDescription(e.target.value)}
+            required
           />
           <label htmlFor="spotImage">Upload Spot Image: </label>
           <input
@@ -84,6 +112,7 @@ export default function AddSpotForm() {
             name="spotImage"
             accept="image/*"
             onChange={(e) => setSpotImage(e.target.files[0])}
+            required
           />
         </div>
         <button type="submit" className="signup-button">

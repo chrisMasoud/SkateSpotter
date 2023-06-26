@@ -79,6 +79,7 @@ export default function SpotDetailPage() {
           ) : (
             <p className="p1">Weather data not available</p>
           )}
+          <p>Difficulty: {data.difficulty}</p>
           <p>{data.Descriptions}</p>
         </div>
         <section className="spotCardSection">

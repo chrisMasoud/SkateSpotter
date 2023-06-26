@@ -330,8 +330,14 @@ app.get("/api/getzip/:uid", (req, res) => {
 });
 
 app.post("/add-spot", (req, res) => {
-  const { spotName, latitude, longitude, spotRating, spotDescription } =
-    req.body;
+  const {
+    spotName,
+    latitude,
+    longitude,
+    spotRating,
+    spotDescription,
+    difficulty,
+  } = req.body;
   const spotImage = req.files.spotImage;
   const imageFileName = `${Date.now()}-${spotImage.name}`;
   spotImage.mv(path.join(__dirname, "public/uploads", imageFileName), (err) => {
@@ -341,7 +347,7 @@ app.post("/add-spot", (req, res) => {
     }
 
     const sql =
-      "INSERT INTO SkateSpot (SpotName, Latitude, Longitude, Rating, Descriptions, Spotimage) VALUES (?, ?, ?, ?, ?, ?)";
+      "INSERT INTO SkateSpot (SpotName, Latitude, Longitude, Rating, Descriptions, Spotimage, difficulty) VALUES (?, ?, ?, ?, ?, ?, ?)";
     connection.query(
       sql,
       [
@@ -351,6 +357,7 @@ app.post("/add-spot", (req, res) => {
         spotRating,
         spotDescription,
         imageFileName,
+        difficulty,
       ],
       (err, result) => {
         if (err) {
