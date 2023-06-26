@@ -2,8 +2,10 @@ import React from "react";
 
 export default function FilterByRating({ onFilter }) {
   return (
-    <div>
-      <label htmlFor="filterbyrating">Filter by Rating: </label>
+    <div className="dropdown">
+      <label htmlFor="filterbyrating" className="dropdownLabel">
+        Filter by Rating:{" "}
+      </label>
       <select name="filterbyrating" id="filterbyrating" onChange={onFilter}>
         <option value="">Select an option</option>
         <option value="rating1">1</option>

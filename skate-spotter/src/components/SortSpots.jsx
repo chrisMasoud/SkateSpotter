@@ -2,8 +2,10 @@ import React from "react";
 
 export default function SortSpots({ onSort }) {
   return (
-    <div>
-      <label htmlFor="sort">Sort by: </label>
+    <div className="dropdown">
+      <label htmlFor="sort" className="dropdownLabel">
+        Sort by:{" "}
+      </label>
       <select name="sort" id="sort" onChange={onSort}>
         <option value="">Select an option</option>
         <option value="name_a">Name (A-Z)</option>

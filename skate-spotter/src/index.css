@@ -961,3 +961,34 @@ p {
   display: flex;
   justify-content: center;
 }
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown select {
+  border: 2px solid #ef6452;
+  background-color: #ef6452;
+  border-radius: 0.9em;
+  padding: 0.8em 1.2em 0.8em 1em;
+  transition: all ease-in-out 0.2s;
+  font-size: 16px;
+  color: #fff;
+  width: 170px;
+  height: 50px;
+}
+
+.dropdown select:hover {
+  background-color: #7fc0a2;
+}
+
+.dropdownLabel {
+  font-size: 24px;
+}
+
+.dropdowns {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}

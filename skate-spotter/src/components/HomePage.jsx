@@ -186,10 +186,9 @@ export default function HomePage() {
       <Header onSpotSearch={handleSpotSearch} />
       <Navbar />
       <Map center={mapCenter} spots={spotData} />
-      <div>
+      <div className="dropdowns">
         <SortSpots value={sortType} onSort={handleSort} />
         <FilterByRating value={ratingFilter} onFilter={handleRatingFilter} />
-        <br />
       </div>
       <section className="spotCardSection">
         {spotData.map((spotItem) => (
