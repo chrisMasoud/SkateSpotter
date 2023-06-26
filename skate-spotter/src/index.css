@@ -51,6 +51,17 @@ body {
   margin: 69px 162px;
 }
 
+.buttonAboutUs {
+  border: 2px solid #ef6452;
+  background-color: #ef6452;
+  border-radius: 0.9em;
+  padding: 0.8em 1.2em 0.8em 1em;
+  transition: all ease-in-out 0.2s;
+  font-size: 16px;
+  width: 200px;
+  height: 60px;
+  margin: 69px 162px;
+}
 .buttonProfilePic {
   border: 2px solid #ef6452;
   background-color: #ef6452;
@@ -1004,3 +1015,29 @@ p {
   justify-content: center;
   padding: 20px;
 }
+
+.mission-container {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.mission-heading {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+  margin-left: -160px;
+  
+  
+}
+
+.mission-text {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  text-align: justify;
+  line-height: 1.5;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+

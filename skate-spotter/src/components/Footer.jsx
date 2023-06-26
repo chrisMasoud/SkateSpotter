@@ -1,5 +1,6 @@
 import React from "react";
 import SupportButton from "./SupportButton";
+import AboutUsButton from "./AboutUsButton";
 
 const Footer = () => {
   return (
@@ -17,40 +18,11 @@ const Footer = () => {
           marginBottom: "20px",
         }}
       >
-        <a href="/about">About Us</a>
-        <span style={{ margin: "0 10px" }}>|</span>
+        <AboutUsButton /> {/* Add the AboutUsButton component here */}
+        <span style={{ margin: "0 10px" }}></span>
         <SupportButton />
       </div>
-      <div>
-        <a
-          href="https://www.facebook.com/example"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i className="fab fa-facebook"></i>
-        </a>
-        <a
-          href="https://www.twitter.com/example"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i className="fab fa-twitter"></i>
-        </a>
-        <a
-          href="https://www.linkedin.com/in/example"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i className="fab fa-linkedin"></i>
-        </a>
-        <a
-          href="https://www.instagram.com/example"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i className="fab fa-instagram"></i>
-        </a>
-      </div>
+    
     </footer>
   );
 };

@@ -12,6 +12,8 @@ import FinishGoogleSignup from "./components/FinishGoogleSignup";
 import SpotDetailPage from "./components/SpotDetailPage";
 import ReviewFormPage from "./components/ReviewFormPage";
 import SupportPage from "./components/SupportPage";
+import AboutUs from "./components/AboutUs";
+import AboutUsButton from "./components/AboutUsButton";
 
 const App = () => {
   useEffect(() => {
@@ -32,6 +34,7 @@ const App = () => {
       <Route path="/DetailPage/:spotId" element={<SpotDetailPage />} />
       <Route path="/ReviewFormPage/:spotId" element={<ReviewFormPage />} />
       <Route path="/SupportPage" element={<SupportPage />} />
+      <Route path="/AboutUs" element={<AboutUs />} />
     </Routes>
   );
 };
