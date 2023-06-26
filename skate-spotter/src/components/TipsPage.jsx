@@ -1,6 +1,6 @@
 import React from "react";
 import LinkCard from "./LinkCard";
-import TipsPageHeader from "./TipsPageHeader";
+import DetailHeader from "./DetailHeader";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -20,7 +20,7 @@ export default function TipsPage() {
 
   return (
     <>
-      <TipsPageHeader />
+      <DetailHeader data="Tips & Tutorials" />
       <section className="spotCardSection">
         {tipsData.map((tipsItem) => (
           <LinkCard key={tipsItem.tutorialID} data={tipsItem} />

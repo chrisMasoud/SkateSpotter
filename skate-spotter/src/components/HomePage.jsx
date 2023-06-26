@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 import key from "../key.json";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Footer from './Footer';
 
 export default function HomePage() {
   const [mapCenter, setMapCenter] = useState({ lat: 40.72417, lng: -73.55952 });
@@ -147,7 +148,7 @@ export default function HomePage() {
 /*
   const handleSpotSearch = (input) => {
     axios
-      .get('/api/searchspots', { params: { keyword: input,  } })
+      .get("/api/searchspots", { params: { keyword: input } })
       .then((response) => {
         setSpotData(response.data);
       })
@@ -169,17 +170,18 @@ export default function HomePage() {
       <Header onZipCodeSearch={handleZipCodeSearch} />
       <Navbar />
       <Map center={mapCenter} spots={spotData} />
-      <>
+      <div>
         <SortSpots value={sortType} onSort={handleSort} />
         <FilterByRating value={ratingFilter} onFilter={handleRatingFilter} />
         <SearchSpots onSpotSearch={handleSpotSearch} />
-        <br/>
-      </>
+        <br />
+      </div>
       <section className="spotCardSection">
         {spotData.map((spotItem) => (
           <Card key={spotItem.SpotID} data={spotItem} onClick={handleClick} />
         ))}
       </section>
+      <Footer />
     </>
   );
 }

@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
+import DetailHeader from "./DetailHeader";
 
 function Login() {
   const nav = useNavigate();
@@ -27,7 +28,7 @@ function Login() {
       axios
         .post(url, loginData)
         .then((response) => {
-          alert(response.data.message);
+          //alert(response.data.message);
           localStorage.setItem("loggedin", true);
           localStorage.setItem("uid", response.data.user.UserID);
           if (response.data.redirect) nav(response.data.redirect);
@@ -55,7 +56,7 @@ function Login() {
     axios
       .post("/api/google-login", googleData)
       .then((response) => {
-        alert(response.data.message);
+        //alert(response.data.message);
         localStorage.setItem("loggedin", true);
         localStorage.setItem("uid", response.data.user.UserID);
         if (response.data.redirect) nav(response.data.redirect);
@@ -70,56 +71,60 @@ function Login() {
   };
 
   return (
-    <div className="forms">
-      <div className="signup-box">
-        <div className="signup-alert">{errorMessage()}</div>
-        <form
-          className="signup-form"
-          method="post"
-          onSubmit={(e) => handleSubmit(e)}
-        >
-          <span className="signup-hdr">Log in</span>
-          <span className="signup-sub">
-            Login using your email and password.
-          </span>
-          <div className="signup-container">
-            <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              type="email"
-              className="signup-input"
-              placeholder="Email"
-              name="email"
-            />
-            <input
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              type="password"
-              className="signup-input"
-              placeholder="Password"
-              name="password"
-            />
+    <>
+      <DetailHeader data="Welcome Back!" />
+      <div className="forms">
+        <div className="signup-box">
+          <div className="signup-alert">{errorMessage()}</div>
+          <form
+            className="signup-form"
+            method="post"
+            onSubmit={(e) => handleSubmit(e)}
+          >
+            <span className="signup-hdr">Log in</span>
+            <span className="signup-sub">
+              Login using your email and password.
+            </span>
+            <div className="signup-container">
+              <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                className="signup-input"
+                placeholder="Email"
+                name="email"
+              />
+              <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                type="password"
+                className="signup-input"
+                placeholder="Password"
+                name="password"
+              />
+            </div>
+            <button type="submit" className="signup-button">
+              Login
+            </button>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <GoogleLogin
+                clientId="766515958928-fnqq80r9t4abrues25eht0c8iled30lf.apps.googleusercontent.com"
+                onSuccess={handleGoogleSuccess}
+                onFailure={handleGoogleFailure}
+                cookiePolicy={"single_host_origin"}
+                scope="profile email https://www.googleapis.com/auth/user.addresses.read"
+              />
+            </div>
+          </form>
+          <div className="signup-sect">
+            <p>
+              Don't have an account?{" "}
+              <Link to="/SignupPage">Register here!</Link>
+            </p>
           </div>
-          <button type="submit" className="signup-button">
-            Login
-          </button>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <GoogleLogin
-              clientId="766515958928-fnqq80r9t4abrues25eht0c8iled30lf.apps.googleusercontent.com"
-              onSuccess={handleGoogleSuccess}
-              onFailure={handleGoogleFailure}
-              cookiePolicy={"single_host_origin"}
-              scope="profile email https://www.googleapis.com/auth/user.addresses.read"
-            />
-          </div>
-        </form>
-        <div className="signup-sect">
-          <p>
-            Don't have an account? <Link to="/SignupPage">Register here!</Link>
-          </p>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

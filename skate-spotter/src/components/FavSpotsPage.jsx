@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import FavPageHeader from "./FavPageHeader";
+import DetailHeader from "./DetailHeader";
 import axios from "axios";
 import Card from "./Card";
 import { useNavigate } from "react-router-dom";
@@ -28,7 +28,7 @@ export default function FavSpotsPage() {
 
   return (
     <>
-      <FavPageHeader />
+      <DetailHeader data="Favorite Spots" />
       <section className="spotCardSection">
         {spotData.map((spotItem) => (
           <Card key={spotItem.SpotID} data={spotItem} onClick={handleClick} />

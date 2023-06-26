@@ -1,11 +1,11 @@
 import React from "react";
-import AddPageHeader from "./AddPageHeader";
+import DetailHeader from "./DetailHeader";
 import AddSpotForm from "./AddSpotForm";
 
 export default function AddSpotPage() {
   return (
     <>
-      <AddPageHeader />
+      <DetailHeader data="Add New Spot" />
       <div className="forms">
         <AddSpotForm />
       </div>

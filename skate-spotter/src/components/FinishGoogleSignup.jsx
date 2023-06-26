@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
+import DetailHeader from "./DetailHeader";
 
 function FinishGoogleSignup() {
   const nav = useNavigate();
@@ -33,7 +34,7 @@ function FinishGoogleSignup() {
       axios
         .post("/api/signup", formData)
         .then((response) => {
-          alert(response.data.message);
+          //alert(response.data.message);
           if (response.data.redirect) nav(response.data.redirect);
         })
         .catch((error) => {
@@ -53,51 +54,54 @@ function FinishGoogleSignup() {
   };
 
   return (
-    <div className="forms">
-      <div className="signup-box">
-        <div className="signup-alert">{errorMessage()}</div>
-        <form
-          className="signup-form"
-          method="post"
-          action=""
-          onSubmit={(e) => handleSubmit(e)}
-        >
-          <span className="signup-hdr">Complete your registration</span>
-          <span className="signup-sub">
-            One last step before we can create your account.
-          </span>
-          <div className="signup-container">
-            <input
-              value={formData.zip}
-              onChange={handleChange}
-              type="number"
-              className="signup-input"
-              placeholder="ZIP"
-              name="zip"
-            />
-            <input
-              value={formData.password}
-              onChange={handleChange}
-              type="password"
-              className="signup-input"
-              placeholder="Password"
-              name="password"
-            />
-            <input
-              value={formData.confirm}
-              onChange={handleChange}
-              type="password"
-              className="signup-input"
-              placeholder="Confirm password"
-              name="confirm"
-            />
-          </div>
-          <button type="submit" className="signup-button">
-            Finish
-          </button>
-        </form>
+    <>
+      <DetailHeader data="Finish Signing Up" />
+      <div className="forms">
+        <div className="signup-box">
+          <div className="signup-alert">{errorMessage()}</div>
+          <form
+            className="signup-form"
+            method="post"
+            action=""
+            onSubmit={(e) => handleSubmit(e)}
+          >
+            <span className="signup-hdr">Complete your registration</span>
+            <span className="signup-sub">
+              One last step before we can create your account.
+            </span>
+            <div className="signup-container">
+              <input
+                value={formData.zip}
+                onChange={handleChange}
+                type="number"
+                className="signup-input"
+                placeholder="ZIP"
+                name="zip"
+              />
+              <input
+                value={formData.password}
+                onChange={handleChange}
+                type="password"
+                className="signup-input"
+                placeholder="Password"
+                name="password"
+              />
+              <input
+                value={formData.confirm}
+                onChange={handleChange}
+                type="password"
+                className="signup-input"
+                placeholder="Confirm password"
+                name="confirm"
+              />
+            </div>
+            <button type="submit" className="signup-button">
+              Finish
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
