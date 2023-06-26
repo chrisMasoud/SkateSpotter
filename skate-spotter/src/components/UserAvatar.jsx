@@ -6,8 +6,10 @@ const UserAvatar = ({ imageUrl, size }) => {
     height: "200px",
     borderRadius: "50%",
     overflow: "hidden",
-    marginLeft: "150px",
+    marginLeft: "135px",
     marginTop: "50px",
+    border: "2px solid #ef6452",
+    marginBottom: "20px",
   };
 
   const imageStyle = {

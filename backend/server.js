@@ -486,6 +486,29 @@ app.post("/support", (req, res) => {
   });
 });
 
+app.post("/api/update-profile", (req, res) => {
+  const { uid, firstName, lastName, zip, biography } = req.body;
+
+  const sql = `
+    UPDATE Users
+    SET FirstName = ?, LastName = ?, ZIP = ?, biography = ?
+    WHERE UserID = ?
+  `;
+  connection.query(
+    sql,
+    [firstName, lastName, zip, biography, uid],
+    (error, results) => {
+      if (error) {
+        console.error("Error updating user profile:", error);
+        res.status(500).json({ message: "Failed to update user profile" });
+      } else {
+        console.log("User profile updated successfully");
+        res.json({ message: "User profile updated successfully" });
+      }
+    }
+  );
+});
+
 // This MUST be at the bottom
 app.listen(8000, () => {
   console.log("Server started on port 8000");

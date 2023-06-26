@@ -8,6 +8,10 @@ import { useNavigate } from "react-router-dom";
 
 export default function UserProfile({ data }) {
   const avatarSize = 150;
+  const [firstName, setFirstName] = useState(data?.FirstName);
+  const [lastName, setLastName] = useState(data?.LastName || "");
+  const [zip, setZip] = useState(data?.ZIP || "");
+  const [biography, setBiography] = useState(data?.biography || "");
   const [defaultImageUrl, setDefaultImageUrl] = useState("");
   const [imageUrl, setImageUrl] = useState(defaultImageUrl);
   const [spotData, setSpotData] = useState([]);
@@ -37,6 +41,15 @@ export default function UserProfile({ data }) {
       });
   }, []);
 
+  useEffect(() => {
+    if (data) {
+      setFirstName(data.FirstName || "");
+      setLastName(data.LastName || "");
+      setZip(data.ZIP || "");
+      setBiography(data.biography || "");
+    }
+  }, [data]);
+
   const handleImageSelect = (file) => {
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -65,23 +78,66 @@ export default function UserProfile({ data }) {
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("/api/update-profile", {
+        uid: uid,
+        firstName: firstName,
+        lastName: lastName,
+        zip: zip,
+        biography: biography,
+      })
+      .then((response) => {
+        console.log("Profile updated successfully");
+      })
+      .catch((error) => {
+        console.error("Error updating profile:", error);
+      });
+  };
+
   return (
     <section className="profile">
-      <div className="profileForm">
-        <UserAvatar imageUrl={imageUrl || defaultImageUrl} size={avatarSize} />
-        <h1 style={{ marginTop: "20px" }}>
-          {data?.FirstName} {data?.LastName}
-        </h1>
-        <h4 style={{ marginTop: "-10px" }}>{data?.ZIP}</h4>
-        <textarea
-          className="profileBio"
-          placeholder="Enter your biography..."
-          value={data?.biography}
-          onChange={(e) => {
-            console.log("Bio event clicked");
-          }}
-        />
-        <UploadFilePrompt onImageSelect={handleImageSelect} />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <div className="signup-box">
+          <form className="signup-form" onSubmit={handleSubmit}>
+            <div className="signup-container">
+              <UserAvatar
+                imageUrl={imageUrl || defaultImageUrl}
+                size={avatarSize}
+              />
+              <input
+                className="profileInput"
+                type="text"
+                placeholder="Enter First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              <input
+                className="profileInput"
+                type="text"
+                placeholder="Enter Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+              <input
+                className="profileInput"
+                type="text"
+                placeholder="Enter ZIP"
+                value={zip}
+                onChange={(e) => setZip(e.target.value)}
+              />
+              <textarea
+                className="profileBio"
+                placeholder="Enter your biography..."
+                value={biography}
+                onChange={(e) => setBiography(e.target.value)}
+              />
+              <UploadFilePrompt onImageSelect={handleImageSelect} />
+              <button type="submit">Save Changes</button>
+            </div>
+          </form>
+        </div>
       </div>
       <div className="profileCards">
         <label className="h1" htmlFor="favSpots">
