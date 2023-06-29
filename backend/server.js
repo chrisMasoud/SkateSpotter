@@ -509,6 +509,22 @@ app.post("/api/update-profile", (req, res) => {
   );
 });
 
+app.get("/api/about", (req, res) => {
+  const query = `
+    SELECT *
+    FROM Developers
+  `;
+
+  connection.query(query, (error, results) => {
+    if (error) {
+      console.error("Failed to fetch devs:", error);
+      res.status(500).json({ error: "Failed to fetch devs" });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
 // This MUST be at the bottom
 app.listen(8000, () => {
   console.log("Server started on port 8000");

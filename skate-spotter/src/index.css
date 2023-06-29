@@ -121,9 +121,24 @@ h1 {
   height: 225px;
 }
 
+.devTextBox {
+  width: calc(100% - 90px);
+  margin-left: -5px;
+  color: black;
+}
+
 .img {
   width: 400px;
   height: 150px;
+  margin-left: 10px;
+  margin-right: 30px;
+  border-radius: 10px;
+  background: linear-gradient(#ef6452, #7fc0a2);
+}
+
+.devImg {
+  width: 250px;
+  height: 350px;
   margin-left: 10px;
   margin-right: 30px;
   border-radius: 10px;
@@ -150,6 +165,23 @@ h1 {
 }
 
 .card:hover {
+  transform: scale(1.1, 1.1);
+  z-index: 9999;
+}
+
+.devCard {
+  width: 700px;
+  height: 400px;
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  transition: 0.5s ease-in-out;
+}
+
+.devCard:hover {
   transform: scale(1.1, 1.1);
   z-index: 9999;
 }
@@ -1016,28 +1048,14 @@ p {
   padding: 20px;
 }
 
-.mission-container {
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
+.aboutPage {
+  display: grid;
+  justify-content: center;
 }
 
-.mission-heading {
-  font-size: 28px;
-  margin-bottom: 20px;
-  text-align: center;
-  margin-left: -160px;
-  
-  
+.mission {
+  word-wrap: break-word;
+  max-width: 700px;
+  font-size: 18px;
+  margin-bottom: -40px;
 }
-
-.mission-text {
-  font-size: 20px;
-  font-weight: bold;
-  color: black;
-  text-align: justify;
-  line-height: 1.5;
-  margin-left: 40px;
-  margin-right: 40px;
-}
-
