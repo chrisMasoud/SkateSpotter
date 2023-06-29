@@ -1,28 +1,50 @@
 import React from "react";
-import SupportButton from "./SupportButton";
+import { Link } from "react-router-dom";
 import AboutUsButton from "./AboutUsButton";
+import SupportButton from "./SupportButton";
+import AddSpotFButton from "./AddSpotFButton";
+import FavSpotFButton from "./FavSpotFButton";
+import NewsFButton from "./NewsFButton";
+import TipsFButton from "./TipsFButton";
+import ProfileFButton from "./ProfileFButton";
+import GitHubButton from "./GitHubButton";
 
 const Footer = () => {
   return (
-    <footer
-      style={{
-        backgroundColor: "#f2f2f2",
-        padding: "20px",
-        textAlign: "center",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          marginBottom: "20px",
-        }}
-      >
-        <AboutUsButton /> {/* Add the AboutUsButton component here */}
-        <span style={{ margin: "0 10px" }}></span>
-        <SupportButton />
+    <footer>
+      <img
+        className="footerImg"
+        src={process.env.PUBLIC_URL + "/FooterLogo.png"}
+        alt="Footer Logo"
+      />
+      <div className="footerButtons">
+        <Link to="/AddSpotPage">
+          <AddSpotFButton />
+        </Link>
+        <Link to="/FavSpotsPage">
+          <FavSpotFButton />
+        </Link>
+        <Link to="/NewsPage">
+          <NewsFButton />
+        </Link>
+        <Link to="/TipsPage">
+          <TipsFButton />
+        </Link>
+        <Link to="/ProfilePage">
+          <ProfileFButton />
+        </Link>
       </div>
-    
+      <div className="footerButtons">
+        <Link to="/AboutUsPage">
+          <AboutUsButton />
+        </Link>
+        <Link to="/SupportPage">
+          <SupportButton />
+        </Link>
+        <Link to="https://github.com/chrisMasoud/SkateSpotter">
+          <GitHubButton />
+        </Link>
+      </div>
     </footer>
   );
 };

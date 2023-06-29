@@ -1,11 +1,9 @@
 import React from "react";
 
-function AboutUsButton() {
+export default function FavSpotFButton() {
   return (
     <button className="footerButton">
-      <span>About Us</span>
+      <span>Favorite Spots</span>
     </button>
   );
 }
-
-export default AboutUsButton;

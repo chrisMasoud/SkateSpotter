@@ -1,11 +1,9 @@
 import React from "react";
 
-function AboutUsButton() {
+export default function AddSpotFButton() {
   return (
     <button className="footerButton">
-      <span>About Us</span>
+      <span>Add New Spot</span>
     </button>
   );
 }
-
-export default AboutUsButton;

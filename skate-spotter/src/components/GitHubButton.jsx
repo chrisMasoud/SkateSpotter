@@ -1,11 +1,11 @@
 import React from "react";
 
-function AboutUsButton() {
+function GitHubButton() {
   return (
     <button className="footerButton">
-      <span>About Us</span>
+      <span>Follow the GitHub</span>
     </button>
   );
 }
 
-export default AboutUsButton;
+export default GitHubButton;

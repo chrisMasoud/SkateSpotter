@@ -51,17 +51,6 @@ body {
   margin: 69px 162px;
 }
 
-.buttonAboutUs {
-  border: 2px solid #ef6452;
-  background-color: #ef6452;
-  border-radius: 0.9em;
-  padding: 0.8em 1.2em 0.8em 1em;
-  transition: all ease-in-out 0.2s;
-  font-size: 16px;
-  width: 200px;
-  height: 60px;
-  margin: 69px 162px;
-}
 .buttonProfilePic {
   border: 2px solid #ef6452;
   background-color: #ef6452;
@@ -1058,4 +1047,31 @@ p {
   max-width: 700px;
   font-size: 18px;
   margin-bottom: -40px;
+}
+
+footer {
+  display: grid;
+  justify-content: center;
+  background-color: #4c4e52;
+}
+
+.footerButtons {
+  display: flex;
+  justify-content: center;
+}
+
+.footerButton {
+  border: 2px solid #4c4e52;
+  background-color: #4c4e52;
+  padding: 0.8em 1.2em 2em 1em;
+  transition: all ease-in-out 0.2s;
+  font-size: 16px;
+  width: 200px;
+  height: 20px;
+}
+
+.footerImg {
+  height: 150px;
+  width: 500px;
+  margin-left: 250px;
 }

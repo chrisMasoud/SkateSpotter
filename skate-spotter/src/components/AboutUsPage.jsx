@@ -3,7 +3,7 @@ import DetailHeader from "./DetailHeader";
 import DevCard from "./DevCard";
 import axios from "axios";
 
-function AboutUs() {
+function AboutUsPage() {
   const [cardData, setCardData] = useState([]);
 
   useEffect(() => {
@@ -44,4 +44,4 @@ function AboutUs() {
   );
 }
 
-export default AboutUs;
+export default AboutUsPage;
