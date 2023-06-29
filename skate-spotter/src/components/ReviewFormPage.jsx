@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import DetailHeader from "./DetailHeader";
+import Footer from "./Footer";
 
 export default function ReviewFormPage() {
   const [title, setTitle] = useState("");
@@ -66,6 +67,7 @@ export default function ReviewFormPage() {
           </form>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

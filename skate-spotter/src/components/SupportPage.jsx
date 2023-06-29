@@ -1,6 +1,7 @@
 import React from "react";
 import SupportForm from "./SupportForm";
 import DetailHeader from "./DetailHeader";
+import Footer from "./Footer";
 
 export default function SupportPage() {
   return (
@@ -9,6 +10,7 @@ export default function SupportPage() {
       <div className="forms">
         <SupportForm />
       </div>
+      <Footer />
     </>
   );
 }

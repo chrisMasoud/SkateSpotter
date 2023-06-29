@@ -3,6 +3,7 @@ import LinkCard from "./LinkCard";
 import DetailHeader from "./DetailHeader";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Footer from "./Footer";
 
 export default function NewsPage() {
   const [newsData, setNewsData] = useState([]);
@@ -26,6 +27,7 @@ export default function NewsPage() {
           <LinkCard key={newsItem.tutorialID} data={newsItem} />
         ))}
       </section>
+      <Footer />
     </>
   );
 }

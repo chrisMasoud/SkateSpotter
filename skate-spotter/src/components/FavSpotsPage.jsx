@@ -3,6 +3,7 @@ import DetailHeader from "./DetailHeader";
 import axios from "axios";
 import Card from "./Card";
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 
 export default function FavSpotsPage() {
   const [spotData, setSpotData] = useState([]);
@@ -34,6 +35,7 @@ export default function FavSpotsPage() {
           <Card key={spotItem.SpotID} data={spotItem} onClick={handleClick} />
         ))}
       </section>
+      <Footer />
     </>
   );
 }
