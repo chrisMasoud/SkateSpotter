@@ -1075,3 +1075,7 @@ footer {
   width: 500px;
   margin-left: 250px;
 }
+
+* {
+  cursor: url(https://cur.cursors-4u.net/sports/spo-1/spo22.cur), auto;
+}
