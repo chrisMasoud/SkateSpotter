@@ -509,6 +509,29 @@ app.post("/api/update-profile", (req, res) => {
   );
 });
 
+app.post("/api/update-spot", (req, res) => {
+  const { spotID, spotName, latitude, longitude, description } = req.body;
+
+  const sql = `
+    UPDATE SkateSpot
+    SET SpotName = ?, Latitude = ?, Longitude = ?, Descriptions = ?
+    WHERE SpotID = ?
+  `;
+  connection.query(
+    sql,
+    [spotName, latitude, longitude, description, spotID],
+    (error, results) => {
+      if (error) {
+        console.error("Error updating spot:", error);
+        res.status(500).json({ message: "Failed to update spot" });
+      } else {
+        console.log("Spot updated successfully");
+        res.json({ message: "Spot updated successfully" });
+      }
+    }
+  );
+});
+
 app.get("/api/about", (req, res) => {
   const query = `
     SELECT *

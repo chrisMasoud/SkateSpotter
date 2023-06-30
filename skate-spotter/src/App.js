@@ -13,6 +13,7 @@ import SpotDetailPage from "./components/SpotDetailPage";
 import ReviewFormPage from "./components/ReviewFormPage";
 import SupportPage from "./components/SupportPage";
 import AboutUsPage from "./components/AboutUsPage";
+import UpdateSpot from "./components/UpdateSpot";
 
 const App = () => {
   useEffect(() => {
@@ -34,6 +35,7 @@ const App = () => {
       <Route path="/ReviewFormPage/:spotId" element={<ReviewFormPage />} />
       <Route path="/SupportPage" element={<SupportPage />} />
       <Route path="/AboutUsPage" element={<AboutUsPage />} />
+      <Route path="/UpdateSpot" element={<UpdateSpot />} />
     </Routes>
   );
 };

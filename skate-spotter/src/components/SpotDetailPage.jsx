@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ReviewCard from "./ReviewCard";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import AddFavoriteButton from "./AddFavoriteButton";
+import UpdateSpotButton from "./UpdateSpotButton";
 import ReportButton from "./ReportButton";
 import DetailHeader from "./DetailHeader";
 import axios from "axios";
@@ -13,6 +14,7 @@ export default function SpotDetailPage() {
   const location = useLocation();
   const { data, weather } = location?.state || {};
   const uid = localStorage.getItem("uid");
+  const nav = useNavigate();
 
   useEffect(() => {
     axios
@@ -41,6 +43,10 @@ export default function SpotDetailPage() {
       });
   };
 
+  const handleUpdateSpot = () => {
+    nav("/UpdateSpot", { state: { data } });
+  };
+
   const handleReportClick = () => {
     axios
       .post("/api/reports", { SpotID: data.SpotID })
@@ -58,6 +64,7 @@ export default function SpotDetailPage() {
       <DetailHeader data={data.SpotName} />
       <nav>
         <AddFavoriteButton onClick={handleFavorite} />
+        <UpdateSpotButton onClick={handleUpdateSpot} />
         <ReportButton onClick={handleReportClick} />
       </nav>
       <div className="details">
