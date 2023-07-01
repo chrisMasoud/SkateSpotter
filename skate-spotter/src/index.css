@@ -141,6 +141,14 @@ h1 {
   background: linear-gradient(#ef6452, #7fc0a2);
 }
 
+.uSpotImage {
+  display: flex;
+  width: 800px;
+  height: 500px;
+  border-radius: 80px;
+  padding: 50px;
+}
+
 .card {
   width: 1200px;
   height: 200px;

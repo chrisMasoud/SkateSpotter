@@ -51,7 +51,7 @@ export default function SpotDetailPage() {
     axios
       .post("/api/reports", { SpotID: data.SpotID })
       .then((response) => {
-        console.log("Report Sumbitted");
+        console.log("Report Submitted");
         alert("Spot Reported.");
       })
       .catch((error) => {

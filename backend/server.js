@@ -511,7 +511,6 @@ app.post("/api/update-profile", (req, res) => {
 
 app.post("/api/update-spot", (req, res) => {
   const { spotID, spotName, latitude, longitude, description } = req.body;
-
   const sql = `
     UPDATE SkateSpot
     SET SpotName = ?, Latitude = ?, Longitude = ?, Descriptions = ?
@@ -530,6 +529,23 @@ app.post("/api/update-spot", (req, res) => {
       }
     }
   );
+});
+
+app.post("/api/delete-spot", (req, res) => {
+  const { spotID } = req.body;
+  const sql = `
+    DELETE FROM SkateSpot
+    WHERE SpotID = ?
+  `;
+  connection.query(sql, [spotID], (error, results) => {
+    if (error) {
+      console.error("Error deleting spot:", error);
+      res.status(500).json({ message: "Failed to delete spot" });
+    } else {
+      console.log("Spot deleted successfully");
+      res.json({ message: "Spot deleted successfully" });
+    }
+  });
 });
 
 app.get("/api/about", (req, res) => {
