@@ -3,7 +3,6 @@ import LinkCard from "./LinkCard";
 import DetailHeader from "./DetailHeader";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Footer from "./Footer";
 
 export default function TipsPage() {
   const [tipsData, setTipsData] = useState([]);
@@ -27,7 +26,6 @@ export default function TipsPage() {
           <LinkCard key={tipsItem.tutorialID} data={tipsItem} />
         ))}
       </section>
-      <Footer />
     </>
   );
 }

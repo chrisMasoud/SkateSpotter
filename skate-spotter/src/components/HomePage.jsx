@@ -10,7 +10,6 @@ import { useState, useEffect } from "react";
 import key from "../key.json";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Footer from "./Footer";
 import FilterByDifficulty from "./FilterByDifficulty";
 
 export default function HomePage() {
@@ -201,7 +200,6 @@ export default function HomePage() {
           <Card key={spotItem.SpotID} data={spotItem} onClick={handleClick} />
         ))}
       </section>
-      <Footer />
     </>
   );
 }

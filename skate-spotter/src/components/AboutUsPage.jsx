@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import DetailHeader from "./DetailHeader";
 import DevCard from "./DevCard";
 import axios from "axios";
-import Footer from "./Footer";
 
 function AboutUsPage() {
   const [cardData, setCardData] = useState([]);
@@ -41,7 +40,6 @@ function AboutUsPage() {
           ))}
         </section>
       </div>
-      <Footer />
     </>
   );
 }

@@ -7,7 +7,6 @@ import ReportButton from "./ReportButton";
 import DetailHeader from "./DetailHeader";
 import axios from "axios";
 import AddReviewButton from "./AddReviewButton";
-import Footer from "./Footer";
 
 export default function SpotDetailPage() {
   const [reviewData, setReviewData] = useState([]);
@@ -97,7 +96,6 @@ export default function SpotDetailPage() {
           <AddReviewButton data={data.SpotID} />
         </section>
       </div>
-      <Footer />
     </>
   );
 }

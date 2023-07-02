@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import UserProfile from "./UserProfile";
 import DetailHeader from "./DetailHeader";
 import axios from "axios";
-import Footer from "./Footer";
 
 const ProfilePage = () => {
   const [userData, setUserData] = useState(null);
@@ -23,7 +22,6 @@ const ProfilePage = () => {
     <>
       <DetailHeader data={`Welcome Back, ${userData?.FirstName}!`} />
       <UserProfile data={userData} />
-      <Footer />
     </>
   );
 };

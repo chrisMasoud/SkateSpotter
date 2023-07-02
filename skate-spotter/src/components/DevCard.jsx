@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
+import ConnectButton from "./ConnectButton";
+import { Link } from "react-router-dom";
 
 function DevCard({ data }) {
   return (
@@ -9,6 +10,9 @@ function DevCard({ data }) {
         <p className="h1">{data.name}</p>
         <p className="p1">{data.title}</p>
         <p>{data.bio}</p>
+        <Link to={data.link}>
+          <ConnectButton />
+        </Link>
       </div>
     </div>
   );

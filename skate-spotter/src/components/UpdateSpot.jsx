@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import DetailHeader from "./DetailHeader";
-import Footer from "./Footer";
 
 export default function UpdateSpot() {
   const location = useLocation();
@@ -127,7 +126,6 @@ export default function UpdateSpot() {
           </form>
         </div>
       </div>
-      <Footer />
     </>
   );
 }
