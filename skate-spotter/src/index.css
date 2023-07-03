@@ -736,6 +736,7 @@ h1 {
   display: grid;
   justify-content: center;
   padding-bottom: 20px;
+  padding-top: 20px;
 }
 
 .searchbar {
@@ -1057,7 +1058,7 @@ p {
 .dropdowns {
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding-top: 20px;
 }
 
 .aboutPage {
