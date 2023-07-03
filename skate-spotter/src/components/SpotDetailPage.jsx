@@ -58,6 +58,10 @@ export default function SpotDetailPage() {
       });
   };
 
+  const capitalizeWords = (str) => {
+    return str.replace(/\b\w/g, (match) => match.toUpperCase());
+  };
+
   return (
     <>
       <DetailHeader data={data.SpotName} />
@@ -72,19 +76,20 @@ export default function SpotDetailPage() {
           alt="No Image Found"
           className="spotImage"
         />
-        <div>
+        <div className="spotDetails">
           <p>
             Location: {data.Latitude}, {data.Longitude}
           </p>
           <p>Rating: {data.Rating}/5</p>
           {weather && weather.main && weather.weather ? (
             <>
-              <p className="p1">
-                Current Conditions: {weather.weather[0].description}
+              <p>
+                Current Conditions:{" "}
+                {capitalizeWords(weather.weather[0].description)}
               </p>
             </>
           ) : (
-            <p className="p1">Weather data not available</p>
+            <p>Weather data not available</p>
           )}
           <p>Difficulty: {data.difficulty}</p>
           <p>{data.Descriptions}</p>
