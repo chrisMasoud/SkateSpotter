@@ -23,6 +23,10 @@ function Card({ data, onClick }) {
     onClick(data, weather);
   };
 
+  const capitalizeWords = (str) => {
+    return str.replace(/\b\w/g, (match) => match.toUpperCase());
+  };
+
   return (
     <div className="card" onClick={handleClick}>
       <div className="textBox">
@@ -34,7 +38,8 @@ function Card({ data, onClick }) {
         {weather && weather.main && weather.weather ? (
           <>
             <p className="p1">
-              Current Conditions: {weather.weather[0].description}
+              Current Conditions:{" "}
+              {capitalizeWords(weather.weather[0].description)}
             </p>
           </>
         ) : (
