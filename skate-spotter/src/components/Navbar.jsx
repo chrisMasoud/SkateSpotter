@@ -12,9 +12,15 @@ export default function Navbar() {
       <Link to="/AddSpotPage">
         <AddSpotButton />
       </Link>
-      <Link to="/FavSpotsPage">
-        <FavSpotsButton />
-      </Link>
+      {localStorage.getItem("loggedin") ? (
+        <Link to="/FavSpotsPage">
+          <FavSpotsButton />
+        </Link>
+      ) : (
+        <Link to="/LoginPage">
+          <FavSpotsButton />
+        </Link>
+      )}
       <Link to="/NewsPage">
         <NewsButton />
       </Link>
