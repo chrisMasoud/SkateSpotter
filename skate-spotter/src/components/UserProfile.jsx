@@ -133,8 +133,10 @@ export default function UserProfile({ data }) {
                 value={biography}
                 onChange={(e) => setBiography(e.target.value)}
               />
-              <UploadFilePrompt onImageSelect={handleImageSelect} />
-              <button type="submit">Save Changes</button>
+              <div className="profileFormButtons">
+                <UploadFilePrompt onImageSelect={handleImageSelect} />
+                <button type="submit">Save Changes</button>
+              </div>
             </div>
           </form>
         </div>
