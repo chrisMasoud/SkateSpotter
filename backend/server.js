@@ -510,15 +510,31 @@ app.post("/api/update-profile", (req, res) => {
 });
 
 app.post("/api/update-spot", (req, res) => {
-  const { spotID, spotName, latitude, longitude, description } = req.body;
+  const {
+    spotID,
+    spotName,
+    latitude,
+    longitude,
+    spotRating,
+    difficulty,
+    description,
+  } = req.body;
   const sql = `
     UPDATE SkateSpot
-    SET SpotName = ?, Latitude = ?, Longitude = ?, Descriptions = ?
+    SET SpotName = ?, Latitude = ?, Longitude = ?, Rating = ?, difficulty = ?, Descriptions = ? 
     WHERE SpotID = ?
   `;
   connection.query(
     sql,
-    [spotName, latitude, longitude, description, spotID],
+    [
+      spotName,
+      latitude,
+      longitude,
+      spotRating,
+      difficulty,
+      description,
+      spotID,
+    ],
     (error, results) => {
       if (error) {
         console.error("Error updating spot:", error);

@@ -13,6 +13,8 @@ export default function UpdateSpot() {
   const [latitude, setLatitude] = useState(data?.Latitude);
   const [longitude, setLongitude] = useState(data?.Longitude);
   const [description, setDescription] = useState(data?.Descriptions);
+  const [spotRating, setSpotRating] = useState(data?.Rating);
+  const [difficulty, setDifficulty] = useState(data?.difficulty);
   const spotImage = data?.spotImage;
   const uid = localStorage.getItem("uid");
 
@@ -34,6 +36,8 @@ export default function UpdateSpot() {
         spotName: spotName,
         latitude: latitude,
         longitude: longitude,
+        spotRating: spotRating,
+        difficulty: difficulty,
         description: description,
       })
       .then((response) => {
@@ -109,6 +113,34 @@ export default function UpdateSpot() {
                 value={longitude}
                 onChange={(e) => setLongitude(e.target.value)}
               />
+              <select
+                className="signup-input"
+                value={spotRating}
+                onChange={(e) => setSpotRating(e.target.value)}
+                required
+              >
+                <option value="" disabled>
+                  Enter Spot Rating
+                </option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+              <select
+                className="signup-input"
+                value={difficulty}
+                onChange={(e) => setDifficulty(e.target.value)}
+                required
+              >
+                <option value="" disabled>
+                  Enter Spot Difficulty
+                </option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Expert">Expert</option>
+              </select>
               <textarea
                 className="signup-textarea"
                 placeholder="Enter a description..."
