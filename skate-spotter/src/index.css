@@ -1125,3 +1125,9 @@ footer {
   backdrop-filter: blur(10px);
   transition: 0.5s ease-in-out;
 }
+
+.profileFormButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
