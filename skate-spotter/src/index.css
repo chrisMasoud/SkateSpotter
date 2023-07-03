@@ -856,6 +856,7 @@ nav {
 }
 
 .signup-box {
+  margin-top: 50px;
   background: #f1f7fe;
   overflow: hidden;
   border-radius: 16px;
