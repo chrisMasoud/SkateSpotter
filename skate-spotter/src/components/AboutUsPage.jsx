@@ -10,7 +10,7 @@ function AboutUsPage() {
     axios
       .get("/api/about")
       .then((response) => {
-        setCardData(response.data);
+        setCardData([...response.data]);
       })
       .catch((error) => {
         console.error("Error fetching dev data:", error);
