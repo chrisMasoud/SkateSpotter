@@ -1,8 +1,9 @@
 {
   "name": "skate-spotter",
   "version": "0.1.0",
-  "proxy": "http://localhost:8000",
+  "proxy": "https://skate-spotter-backend.vercel.app",
   "private": true,
+  "homepage": "https://chrisMasoud.github.io/SkateSpotter",
   "dependencies": {
     "@react-google-maps/api": "^2.18.1",
     "@react-oauth/google": "^0.11.0",
@@ -26,7 +27,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -45,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
   }
 }

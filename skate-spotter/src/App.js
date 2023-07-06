@@ -25,7 +25,7 @@ const App = () => {
     <div id="root">
       <div className="content">
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/SkateSpotter" element={<HomePage />} />
           <Route path="/AddSpotPage" element={<AddSpotPage />} />
           <Route path="/FavSpotsPage" element={<FavSpotsPage />} />
           <Route path="/NewsPage" element={<NewsPage />} />

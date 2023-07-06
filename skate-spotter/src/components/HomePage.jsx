@@ -24,7 +24,7 @@ export default function HomePage() {
 
   useEffect(() => {
     axios
-      .get("/api/spots")
+      .get("https://skate-spotter-backend-server.vercel.app/api/spots")
       .then((res) => {
         setSpotData(res.data);
         setSpotLib(res.data);
@@ -39,7 +39,9 @@ export default function HomePage() {
     ) {
       const uid = localStorage.getItem("uid");
       axios
-        .get(`/api/getzip/${uid}`)
+        .get(
+          `https://skate-spotter-backend-server.vercel.app/api/getzip/${uid}`
+        )
         .then((res) => {
           const userzip = res.data.zip;
           const api_key = key.apikey;

@@ -9,7 +9,9 @@ const ProfilePage = () => {
 
   useEffect(() => {
     axios
-      .get(`/api/getprofile/${uid}`)
+      .get(
+        `https://skate-spotter-backend-server.vercel.app/api/getprofile/${uid}`
+      )
       .then((res) => {
         setUserData(res.data);
       })

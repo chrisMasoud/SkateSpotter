@@ -11,7 +11,9 @@ export default function FavSpotsPage() {
 
   useEffect(() => {
     axios
-      .get(`/api/bookmarks/${uid}`)
+      .get(
+        `https://skate-spotter-backend-server.vercel.app/api/bookmarks/${uid}`
+      )
       .then((response) => {
         setSpotData(response.data);
       })

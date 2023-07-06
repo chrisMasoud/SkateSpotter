@@ -20,7 +20,9 @@ export default function UserProfile({ data }) {
 
   useEffect(() => {
     axios
-      .get(`/api/getprofileimage/${uid}`)
+      .get(
+        `https://skate-spotter-backend-server.vercel.app/api/getprofileimage/${uid}`
+      )
       .then((res) => {
         const { url } = res.data;
         setDefaultImageUrl(url);
@@ -32,7 +34,9 @@ export default function UserProfile({ data }) {
 
   useEffect(() => {
     axios
-      .get(`/api/bookmarks/${uid}`)
+      .get(
+        `https://skate-spotter-backend-server.vercel.app/api/bookmarks/${uid}`
+      )
       .then((response) => {
         setSpotData(response.data);
       })
@@ -59,7 +63,10 @@ export default function UserProfile({ data }) {
       formData.append("image", file);
       formData.append("uid", uid);
       axios
-        .post("/api/upload", formData)
+        .post(
+          "https://skate-spotter-backend-server.vercel.app/api/upload",
+          formData
+        )
         .then((response) => {
           const { relativepath } = response.data;
           setImageUrl(relativepath);
@@ -81,13 +88,16 @@ export default function UserProfile({ data }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("/api/update-profile", {
-        uid: uid,
-        firstName: firstName,
-        lastName: lastName,
-        zip: zip,
-        biography: biography,
-      })
+      .post(
+        "https://skate-spotter-backend-server.vercel.app/api/update-profile",
+        {
+          uid: uid,
+          firstName: firstName,
+          lastName: lastName,
+          zip: zip,
+          biography: biography,
+        }
+      )
       .then((response) => {
         console.log("Profile updated successfully");
       })

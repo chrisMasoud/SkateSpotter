@@ -9,7 +9,7 @@ export default function TipsPage() {
 
   useEffect(() => {
     axios
-      .get("/api/tips")
+      .get("https://skate-spotter-backend-server.vercel.app/api/tips")
       .then((response) => {
         setTipsData(response.data);
       })

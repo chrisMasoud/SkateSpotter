@@ -8,7 +8,7 @@ function AboutUsPage() {
 
   useEffect(() => {
     axios
-      .get("/api/about")
+      .get("https://skate-spotter-backend-server.vercel.app/api/about")
       .then((response) => {
         setCardData([...response.data]);
       })

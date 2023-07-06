@@ -12,22 +12,33 @@ export default function AddSpotForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const imageFileName = `${Date.now()}-${spotImage.name}`;
     const formData = new FormData();
     formData.append("spotName", spotName);
     formData.append("latitude", latitude);
     formData.append("longitude", longitude);
     formData.append("spotRating", spotRating);
     formData.append("spotDescription", spotDescription);
-    formData.append("spotImage", spotImage);
+    formData.append("spotImage", imageFileName);
     formData.append("difficulty", difficulty);
 
+    spotImage.mv(path.join(__dirname, "public", imageFileName), (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send("Error uploading image");
+      }
+    });
+
     try {
-      await axios.post("/add-spot", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await axios.post(
+        "https://skate-spotter-backend-server.vercel.app/add-spot",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       console.log("Spot added successfully");
       setSpotName("");
       setLatitude("");
