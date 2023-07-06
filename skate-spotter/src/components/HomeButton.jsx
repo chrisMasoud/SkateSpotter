@@ -5,7 +5,7 @@ function HomeButton() {
   const navigate = useNavigate();
 
   function handleClick(event) {
-    navigate("/");
+    navigate("/SkateSpotter");
   }
 
   return (
