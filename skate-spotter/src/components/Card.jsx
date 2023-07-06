@@ -46,7 +46,7 @@ function Card({ data, onClick }) {
           <p className="p1">Current Conditions: Weather data not available</p>
         )}
       </div>
-      <img className="img" src={`/uploads/${data.Spotimage}`} />
+      <img className="img" src={`/${data.Spotimage}`} />
       <div className="chevron">
         <svg
           fill="none"
