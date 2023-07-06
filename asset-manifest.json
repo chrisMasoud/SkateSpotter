@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/SkateSpotter/static/css/main.e42e7028.css",
-    "main.js": "/SkateSpotter/static/js/main.a51cdabd.js",
+    "main.js": "/SkateSpotter/static/js/main.27b054e9.js",
     "static/js/787.bb59f85d.chunk.js": "/SkateSpotter/static/js/787.bb59f85d.chunk.js",
     "index.html": "/SkateSpotter/index.html",
     "main.e42e7028.css.map": "/SkateSpotter/static/css/main.e42e7028.css.map",
-    "main.a51cdabd.js.map": "/SkateSpotter/static/js/main.a51cdabd.js.map",
+    "main.27b054e9.js.map": "/SkateSpotter/static/js/main.27b054e9.js.map",
     "787.bb59f85d.chunk.js.map": "/SkateSpotter/static/js/787.bb59f85d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e42e7028.css",
-    "static/js/main.a51cdabd.js"
+    "static/js/main.27b054e9.js"
   ]
 }
