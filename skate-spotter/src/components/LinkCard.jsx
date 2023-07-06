@@ -12,7 +12,10 @@ function LinkCard({ data }) {
         <p className="p">{data.creator}</p>
         <p className="p">{data.description}...</p>
       </div>
-      <img src={process.env.PUBLIC_URL + data.thumbnail} className="img" />
+      <img
+        src={`${process.env.PUBLIC_URL}/${data.thumbnail}`}
+        className="img"
+      />
       <div className="chevron">
         <svg
           fill="none"
