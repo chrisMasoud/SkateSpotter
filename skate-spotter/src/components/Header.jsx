@@ -1,22 +1,14 @@
-import React from "react";
-import SearchBar from "./SearchBar";
+import SearchSpots from "./SearchSpots";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
-import LikeButton from "./LikeButton";
-import DislikeButton from "./DislikeButton";
-import BookmarkButton from "./BookmarkButton";
 import Logo from "./Logo";
 
-function Header() {
+function Header({ onSpotSearch }) {
   return (
     <header className="header">
       <Logo />
-      <SearchBar />
-      <LoginButton />
-      <LogoutButton />
-      <LikeButton />
-      <DislikeButton />
-      <BookmarkButton />
+      <SearchSpots onSpotSearch={onSpotSearch} />
+      {localStorage.getItem("loggedin") ? <LogoutButton /> : <LoginButton />}
     </header>
   );
 }

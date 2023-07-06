@@ -1,11 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-function LoginButton() {
+function AddReviewButton({ data }) {
   const navigate = useNavigate();
 
   function handleClick(event) {
-    navigate("/LoginPage");
+    navigate(`/ReviewFormPage/${data}`);
   }
 
   return (
@@ -14,7 +14,7 @@ function LoginButton() {
         <svg
           fill="none"
           stroke="currentColor"
-          strokeWidth="1.5"
+          stroke-width="1.5"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
@@ -22,15 +22,15 @@ function LoginButton() {
           height="24"
         >
           <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
           ></path>
         </svg>{" "}
-        Login
+        Submit a Review
       </span>
     </button>
   );
 }
 
-export default LoginButton;
+export default AddReviewButton;

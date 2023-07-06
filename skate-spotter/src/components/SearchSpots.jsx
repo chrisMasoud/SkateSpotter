@@ -1,12 +1,17 @@
 import React from "react";
 import { useState } from "react";
 
-function SearchBar({ onZipCodeSearch }) {
-  const [zipCode, setZipCode] = useState("");
+function SearchSpots({ onSpotSearch }) {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  /*
+  const [sortBy, setSortBy] = useState("");
+  const [filterBy, setFilterBy] = useState("");
+  */
 
   function handleSearch() {
-    onZipCodeSearch(zipCode);
-    setZipCode("");
+    onSpotSearch(searchTerm);
+    setSearchTerm("");
   }
 
   return (
@@ -34,9 +39,9 @@ function SearchBar({ onZipCodeSearch }) {
             autoComplete="off"
             title="Search"
             role="combobox"
-            placeholder="Search by Zip Code"
-            value={zipCode}
-            onChange={(e) => setZipCode(e.target.value)}
+            placeholder="Search by Keyword"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
 
@@ -63,4 +68,4 @@ function SearchBar({ onZipCodeSearch }) {
   );
 }
 
-export default SearchBar;
+export default SearchSpots;

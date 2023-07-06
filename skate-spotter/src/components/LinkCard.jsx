@@ -1,15 +1,18 @@
 import React from "react";
 
-function SpotCard() {
+function LinkCard({ data }) {
+  const handleClick = () => {
+    window.open(data.url, "_blank");
+  };
+
   return (
-    <div className="card">
+    <div className="card" onClick={handleClick}>
       <div className="textBox">
-        <p className="h1">Spot Name</p>
-        <p className="p">Location</p>
-        <p className="p">Rating</p>
-        <p className="p">Weather</p>
+        <p className="h1">{data.title}</p>
+        <p className="p">{data.creator}</p>
+        <p className="p">{data.description}...</p>
       </div>
-      <div className="img" />
+      <img src={data.thumbnail} className="img" />
       <div className="chevron">
         <svg
           fill="none"
@@ -30,4 +33,4 @@ function SpotCard() {
   );
 }
 
-export default SpotCard;
+export default LinkCard;

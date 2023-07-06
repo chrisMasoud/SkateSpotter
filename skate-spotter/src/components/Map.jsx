@@ -1,20 +1,29 @@
 import React from "react";
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  useJsApiLoader,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
 import key from "../key.json";
+import { useNavigate } from "react-router-dom";
 
 const containerStyle = {
-  width: "800px",
+  width: "1500px",
   height: "600px",
+  borderRadius: "5%",
+  overflow: "hidden",
 };
 
-//coords
-const center = {
-  lat: 40,
-  lng: -75,
+const defualtCenter = {
+  lat: 40.71417,
+  lng: -73.55952,
 };
 
-function Map() {
+function Map({ center, spots }) {
   const [map, setMap] = React.useState(null);
+  const [selectedSpot, setSelectedSpot] = React.useState(null);
+  const navigate = useNavigate();
   const api_key = key.apikey;
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -22,10 +31,6 @@ function Map() {
   });
 
   const onLoad = React.useCallback(function callback(map) {
-    // This is just an example of getting and using the map instance!!! don't just blindly copy!
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
-
     setMap(map);
   }, []);
 
@@ -33,17 +38,57 @@ function Map() {
     setMap(null);
   }, []);
 
+  const handleMarkerClick = (spot) => {
+    setSelectedSpot(spot);
+  };
+
+  const handleCloseInfoWindow = () => {
+    setSelectedSpot(null);
+  };
+
   return isLoaded ? (
-    <GoogleMap
-      mapContainerStyle={containerStyle}
-      center={center}
-      zoom={10}
-      onLoad={onLoad}
-      onUnmount={onUnmount}
-    >
-      {/* Child components, such as markers, info windows, etc. */}
-      <></>
-    </GoogleMap>
+    <div className="mapContainer">
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        defualtCenter={defualtCenter}
+        center={center}
+        zoom={14}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+      >
+        {spots.map((spot) => (
+          <Marker
+            key={spot.SpotID}
+            position={{
+              lat: parseFloat(spot.Latitude),
+              lng: parseFloat(spot.Longitude),
+            }}
+            title={spot.SpotName}
+            onClick={() => handleMarkerClick(spot)}
+          />
+        ))}
+        {selectedSpot && (
+          <InfoWindow
+            position={{
+              lat: parseFloat(selectedSpot.Latitude),
+              lng: parseFloat(selectedSpot.Longitude),
+            }}
+            onCloseClick={handleCloseInfoWindow}
+          >
+            <div>
+              <h3>{selectedSpot.SpotName}</h3>
+              <button
+                onClick={() =>
+                  navigate(`/page`, { state: { data: selectedSpot } })
+                }
+              >
+                View Details
+              </button>
+            </div>
+          </InfoWindow>
+        )}
+      </GoogleMap>
+    </div>
   ) : (
     <></>
   );
