@@ -3,6 +3,7 @@ import axios from "axios";
 
 function Card({ data, onClick }) {
   const [weather, setWeather] = useState(null);
+  const [imageURL, setImageURL] = useState(null);
 
   useEffect(() => {
     const fetchWeatherData = async () => {
