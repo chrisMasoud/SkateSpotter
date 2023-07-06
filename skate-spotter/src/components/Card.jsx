@@ -16,7 +16,19 @@ function Card({ data, onClick }) {
       }
     };
 
+    const fetchImageURL = async () => {
+      try {
+        const response = await axios.get(
+          `https://skate-spotter-backend-server.vercel.app/api/getImageURL/${data.Spotimage}`
+        );
+        setImageURL(response.data.imageUrl);
+      } catch (error) {
+        console.error("Error fetching image URL:", error);
+      }
+    };
+
     fetchWeatherData();
+    fetchImageURL();
   }, [data]);
 
   const handleClick = () => {
@@ -46,7 +58,7 @@ function Card({ data, onClick }) {
           <p className="p1">Current Conditions: Weather data not available</p>
         )}
       </div>
-      <img className="img" src={`/${data.Spotimage}`} />
+      <img className="img" src={imageURL} alt="Spot" />
       <div className="chevron">
         <svg
           fill="none"
