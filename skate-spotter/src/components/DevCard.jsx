@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function DevCard({ data }) {
   return (
     <div className="devCard">
-      <img className="devImg" src={process.env.PUBLIC_URL + "/" + data.image} />
+      <img className="devImg" src={`${process.env.PUBLIC_URL}/${data.image}`} />
       <div className="devTextBox">
         <p className="h1">{data.name}</p>
         <p className="p1">{data.title}</p>
