@@ -135,7 +135,8 @@ h1 {
 }
 
 .devImg {
-  height: 450px;
+  height: 400px;
+  width: 600px;
   margin-left: 10px;
   margin-right: 30px;
   border-radius: 10px;
@@ -180,8 +181,8 @@ h1 {
 }
 
 .devCard {
-  width: 750px;
-  height: 500px;
+  width: 800px;
+  height: 450px;
   background: white;
   border-radius: 20px;
   display: flex;
