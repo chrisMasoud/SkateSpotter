@@ -6,7 +6,7 @@ function LogoutButton() {
   const nav = useNavigate();
   const handleLogout = () => {
     axios
-      .post("/api/logout")
+      .post("https://skate-spotter-backend-server.vercel.app/api/logout")
       .then((response) => {
         localStorage.removeItem("loggedin");
         localStorage.removeItem("uid");

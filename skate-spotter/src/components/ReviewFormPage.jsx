@@ -19,7 +19,10 @@ export default function ReviewFormPage() {
     formData.append("spotId", spotId);
 
     try {
-      await axios.post("/add-review", formData);
+      await axios.post(
+        "https://skate-spotter-backend-server.vercel.app/add-review",
+        formData
+      );
       console.log("Review added successfully");
       setTitle("");
       setDescription("");

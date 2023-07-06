@@ -9,7 +9,7 @@ export default function NewsPage() {
 
   useEffect(() => {
     axios
-      .get("/api/news")
+      .get("https://skate-spotter-backend-server.vercel.app/api/news")
       .then((response) => {
         setNewsData(response.data);
       })

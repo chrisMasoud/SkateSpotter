@@ -32,7 +32,10 @@ function FinishGoogleSignup() {
       setError(true);
     } else {
       axios
-        .post("/api/signup", formData)
+        .post(
+          "https://skate-spotter-backend-server.vercel.app/api/signup",
+          formData
+        )
         .then((response) => {
           //alert(response.data.message);
           if (response.data.redirect) nav(response.data.redirect);

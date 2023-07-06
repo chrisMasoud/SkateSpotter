@@ -17,7 +17,9 @@ export default function SpotDetailPage() {
 
   useEffect(() => {
     axios
-      .get(`/api/reviews/${data.SpotID}`)
+      .get(
+        `https://skate-spotter-backend-server.vercel.app/api/reviews/${data.SpotID}`
+      )
       .then((response) => {
         setReviewData(response.data);
       })
@@ -32,7 +34,10 @@ export default function SpotDetailPage() {
 
   const handleFavorite = () => {
     axios
-      .post("/api/bookmarks", { SpotID: data.SpotID, UserID: uid })
+      .post("https://skate-spotter-backend-server.vercel.app/api/bookmarks", {
+        SpotID: data.SpotID,
+        UserID: uid,
+      })
       .then((response) => {
         console.log("Spot bookmarked successfully!");
         alert("Spot Bookmarked.");
@@ -48,7 +53,9 @@ export default function SpotDetailPage() {
 
   const handleReportClick = () => {
     axios
-      .post("/api/reports", { SpotID: data.SpotID })
+      .post("https://skate-spotter-backend-server.vercel.app/api/reports", {
+        SpotID: data.SpotID,
+      })
       .then((response) => {
         console.log("Report Submitted");
         alert("Spot Reported.");

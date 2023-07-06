@@ -31,7 +31,7 @@ export default function UpdateSpot() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("/api/update-spot", {
+      .post("https://skate-spotter-backend-server.vercel.app/api/update-spot", {
         spotID: spotID,
         spotName: spotName,
         latitude: latitude,

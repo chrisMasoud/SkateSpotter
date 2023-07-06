@@ -23,11 +23,15 @@ export default function AddSpotForm() {
     formData.append("difficulty", difficulty);
 
     try {
-      await axios.post("/add-spot", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await axios.post(
+        "https://skate-spotter-backend-server.vercel.app/add-spot",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       console.log("Spot added successfully");
       setSpotName("");
       setLatitude("");

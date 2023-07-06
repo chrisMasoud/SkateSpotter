@@ -20,7 +20,7 @@ function Login() {
     } else {
       setSubmitted(true);
       setError(false);
-      const url = "/api/login";
+      const url = "https://skate-spotter-backend-server.vercel.app/api/login";
       const loginData = {
         email: email,
         password: password,
@@ -54,7 +54,10 @@ function Login() {
       email: gdata.email || "",
     };
     axios
-      .post("/api/google-login", googleData)
+      .post(
+        "https://skate-spotter-backend-server.vercel.app/api/google-login",
+        googleData
+      )
       .then((response) => {
         //alert(response.data.message);
         localStorage.setItem("loggedin", true);

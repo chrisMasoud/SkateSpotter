@@ -15,7 +15,10 @@ export default function SupprotForm() {
     formData.append("description", description);
 
     try {
-      await axios.post("/support", formData);
+      await axios.post(
+        "https://skate-spotter-backend-server.vercel.app/support",
+        formData
+      );
       console.log("Claim added successfully");
       alert("Your claim has been submitted and we will reach out to you soon.");
       setName("");
