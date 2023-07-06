@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <GoogleOAuthProvider clientId="766515958928-fnqq80r9t4abrues25eht0c8iled30lf.apps.googleusercontent.com">
     <React.StrictMode>
-      <BrowserRouter>
+      <BrowserRouter baseName="/SkateSpotter">
         <App />
       </BrowserRouter>
     </React.StrictMode>

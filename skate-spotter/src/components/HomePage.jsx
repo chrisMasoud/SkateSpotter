@@ -24,7 +24,7 @@ export default function HomePage() {
 
   useEffect(() => {
     axios
-      .get("/api/spots")
+      .get("https://skate-spotter-backend.vercel.app/api/spots")
       .then((res) => {
         setSpotData(res.data);
         setSpotLib(res.data);
