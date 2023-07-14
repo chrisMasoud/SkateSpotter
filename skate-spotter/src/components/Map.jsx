@@ -79,7 +79,9 @@ function Map({ center, spots }) {
               <h3>{selectedSpot.SpotName}</h3>
               <button
                 onClick={() =>
-                  navigate(`/page`, { state: { data: selectedSpot } })
+                  navigate(`/DetailPage/${selectedSpot.SpotID}`, {
+                    state: { data: selectedSpot },
+                  })
                 }
               >
                 View Details
